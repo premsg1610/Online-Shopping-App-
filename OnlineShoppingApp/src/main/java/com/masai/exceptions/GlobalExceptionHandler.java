@@ -16,63 +16,107 @@ public class GlobalExceptionHandler {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-//	if any logical error happens than this exception will be thrown.
-	
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<MyErrorDetails> logicalException(Exception e, WebRequest wr){
+	    //-------------------------------------------------------------------------//
+		//									ADMIN EXCEPTIONS
+		//-------------------------------------------------------------------------//
+		@ExceptionHandler(AdminNotFoundException.class)
+		public ResponseEntity<MyErrorDetails> sellerHandler(AdminNotFoundException e, WebRequest wr) {
+			
+			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+			
+			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		}
 		
-		System.out.println("Inside the Exception Handler...");
+		@ExceptionHandler(AdminAlreadyExistException.class)
+		public ResponseEntity<MyErrorDetails> sellerHandler(AdminAlreadyExistException e, WebRequest wr) {
+			
+			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+			
+			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		}
+	
+	
 		
-		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
 		
-		ResponseEntity<MyErrorDetails> re = new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+		//-------------------------------------------------------------------------//
+		//									CUSTOMER EXCEPTIONS
+		//-------------------------------------------------------------------------//
 		
-		return re;
+		@ExceptionHandler(CustomerAlreadyExistsException.class) 
+		public ResponseEntity<MyErrorDetails> customerExists(CustomerAlreadyExistsException e, WebRequest wr) {
+			
+			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+			
+			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		}
+	
 		
-	}
+		@ExceptionHandler(CustomerNotFoundException.class)
+		public ResponseEntity<MyErrorDetails> sellerHandler(CustomerNotFoundException e, WebRequest wr) {
+			
+            MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+			
+			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		}
+		
+	
+	
+		
+		
 	
 	
 	
+        //	if any logical error happens than this exception will be thrown.
 	
-//	if user passes wrong api than this exception will be thrown automatically by spring boot
-	
-	@ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<MyErrorDetails> wrongApiException(NoHandlerFoundException e, WebRequest wr){
+		@ExceptionHandler(Exception.class)
+		public ResponseEntity<MyErrorDetails> logicalException(Exception e, WebRequest wr){
 		
-		System.out.println("Inside the NoHandlerFoundException Handler...");
+			System.out.println("Inside the Exception Handler...");
+			
+			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
+			
+			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+				
+	    }
+	
 		
-		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
 		
-		ResponseEntity<MyErrorDetails> re = new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 		
-		return re;
 		
-	}
+	
+	   //-------------------------------------------------------------------------//
+	   //								VALIDATION EXCEPTIONS
+	   //-------------------------------------------------------------------------//
+	
+	
+       //	if user passes wrong api than this exception will be thrown automatically by spring boot
+	
+	   @ExceptionHandler(NoHandlerFoundException.class)
+       public ResponseEntity<MyErrorDetails> wrongApiException(NoHandlerFoundException e, WebRequest wr){
+		
+		  System.out.println("Inside the NoHandlerFoundException Handler...");
+		
+		  MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
+		
+		  return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+		
+	   }
 	
 	
 	
-//	if user don't pass right argument than this exception will be thrown....
+      //	if user don't pass right argument than this exception will be thrown....
 	
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<MyErrorDetails> myIllegalHandler4(MethodArgumentNotValidException ie,WebRequest req) {
+	   @ExceptionHandler(MethodArgumentNotValidException.class)
+	   public ResponseEntity<MyErrorDetails> myIllegalHandler4(MethodArgumentNotValidException ie,WebRequest req) {
 		
 			System.out.println("inside MethodArgumentNotValidException Handler...");
 			
 			MyErrorDetails err=new MyErrorDetails(LocalDateTime.now(), ie.getMessage(), req.getDescription(false));
 			
-			ResponseEntity<MyErrorDetails> re=new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 			
-			return re;
 	
-	}
+	  }
 	
 	
 }
