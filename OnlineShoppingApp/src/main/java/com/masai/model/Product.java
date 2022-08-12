@@ -1,5 +1,10 @@
 package com.masai.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,18 +17,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @EqualsAndHashCode
 
-
+@Entity
 public class Product {
 
-	String productId;
-	String productName;
-	Double price;
-	String color;
-	String dimension;
-	String specification;
-	String manufacturer;
-	Integer quantity;
-	Category category;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String productId;
+	private String productName;
+	private Double price;
+	private String color;
+	private String specification;
+	private String manufacturer;
+	private Integer quantity;
+	private Category category;
+	
 	
 	
 }

@@ -14,12 +14,12 @@ import lombok.ToString;
 
 public class Address {
 
-	Integer addressId;
-	String streetNo;
-	String buildingName;
-	String city;
-	String state;
-	String country;
-	String pincode;
+//	private Integer addressId;
+	private String streetNo;
+	private String buildingName;
+	private String city;
+	private String state;
+	private String country;
+	private String pincode;
 	
 }

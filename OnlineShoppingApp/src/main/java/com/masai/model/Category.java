@@ -15,6 +15,6 @@ import lombok.ToString;
 
 public class Category {
 
-	String catId;
-	String categoryName;
+	private String catId;
+	private String categoryName;
 }
