@@ -1,6 +1,9 @@
 package com.masai.model;
 
-import java.util.Set;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +21,12 @@ import lombok.ToString;
 
 public class Cart {
 
-	String cartId;
-	Customer customer;
-	Set<Product> products;
+	private String cartId;
+	
+	@Embedded
+	private Customer customer;
+	
+	@Embedded
+	@ElementCollection
+	private List<Product> products;
 }
