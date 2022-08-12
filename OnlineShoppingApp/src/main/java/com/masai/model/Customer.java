@@ -5,10 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -16,19 +16,20 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+
 
 @Entity
 public class Customer extends User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
-	String customerId;
-	String firstName;
-	String lastName;
-	Integer mobile;
-	String email;
+    private Integer customerId;
+	private String firstName;
+	private String lastName;
+	private Integer mobile;
+	private String password;
+	private String email;
 	
-	@Embedded
+	@OneToOne
 	Address address;
 }
