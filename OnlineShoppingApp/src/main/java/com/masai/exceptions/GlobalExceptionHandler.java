@@ -16,11 +16,29 @@ public class GlobalExceptionHandler {
 
 	
 	
+        	//-------------------------------------------------------------------------//
+			//									LOGIN EXCEPTIONS
+			//-------------------------------------------------------------------------//
+			@ExceptionHandler(LoginException.class)
+			public ResponseEntity<MyErrorDetails> loginHandler(LoginException e, WebRequest wr) {
+				
+				MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+				
+				return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+			}
+	
+	
+	
+			
+			
+	
+	
+	
 	    //-------------------------------------------------------------------------//
 		//									ADMIN EXCEPTIONS
 		//-------------------------------------------------------------------------//
 		@ExceptionHandler(AdminException.class)
-		public ResponseEntity<MyErrorDetails> sellerHandler(AdminException e, WebRequest wr) {
+		public ResponseEntity<MyErrorDetails> adminrHandler(AdminException e, WebRequest wr) {
 			
 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
 			
@@ -28,6 +46,8 @@ public class GlobalExceptionHandler {
 		}
 		
 	
+		
+		
 	
 		
 		
@@ -36,7 +56,7 @@ public class GlobalExceptionHandler {
 		//-------------------------------------------------------------------------//	
 		
 		@ExceptionHandler(CustomerException.class)
-		public ResponseEntity<MyErrorDetails> sellerHandler(CustomerException e, WebRequest wr) {
+		public ResponseEntity<MyErrorDetails> customerHandler(CustomerException e, WebRequest wr) {
 			
             MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
 			
@@ -47,13 +67,17 @@ public class GlobalExceptionHandler {
 	
 		
 		
-	
+		
+		
+		   //-------------------------------------------------------------------------//
+		   //								GLOBAL EXCEPTIONS
+		   //-------------------------------------------------------------------------//
 	
 	
         //	if any logical error happens than this exception will be thrown.
 	
 		@ExceptionHandler(Exception.class)
-		public ResponseEntity<MyErrorDetails> logicalException(Exception e, WebRequest wr){
+		public ResponseEntity<MyErrorDetails> logicalHandler(Exception e, WebRequest wr){
 		
 			System.out.println("Inside the Exception Handler...");
 			
@@ -67,6 +91,7 @@ public class GlobalExceptionHandler {
 		
 		
 		
+		
 	
 	   //-------------------------------------------------------------------------//
 	   //								VALIDATION EXCEPTIONS
@@ -76,7 +101,7 @@ public class GlobalExceptionHandler {
        //	if user passes wrong api than this exception will be thrown automatically by spring boot
 	
 	   @ExceptionHandler(NoHandlerFoundException.class)
-       public ResponseEntity<MyErrorDetails> wrongApiException(NoHandlerFoundException e, WebRequest wr){
+       public ResponseEntity<MyErrorDetails> wrongApiHandler(NoHandlerFoundException e, WebRequest wr){
 		
 		  System.out.println("Inside the NoHandlerFoundException Handler...");
 		
@@ -86,12 +111,15 @@ public class GlobalExceptionHandler {
 		
 	   }
 	
+	   
+	   
+	   
 	
 	
       //	if user don't pass right argument than this exception will be thrown....
 	
 	   @ExceptionHandler(MethodArgumentNotValidException.class)
-	   public ResponseEntity<MyErrorDetails> myIllegalHandler4(MethodArgumentNotValidException ie,WebRequest req) {
+	   public ResponseEntity<MyErrorDetails> methodHandler(MethodArgumentNotValidException ie,WebRequest req) {
 		
 			System.out.println("inside MethodArgumentNotValidException Handler...");
 			
@@ -100,7 +128,41 @@ public class GlobalExceptionHandler {
 			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 			
 	
-	  }
+	    }
+	   
+	   
+	   
+	   
+	   
+	   
+	        //-------------------------------------------------------------------------//
+	 		//									PRODUCT EXCEPTIONS
+	 		//-------------------------------------------------------------------------//
+	 		@ExceptionHandler(ProductException.class)
+	 		public ResponseEntity<MyErrorDetails> productHandler(ProductException e, WebRequest wr) {
+	 			
+	 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+	 			
+	 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+	 		}
+	 		
+	 		
+	 		
+	 		
+	 		
+	 		
+	 		
+	 		//-------------------------------------------------------------------------//
+	 		//									ADDRESS EXCEPTIONS
+	 		//-------------------------------------------------------------------------//
+	 		@ExceptionHandler(AddressException.class)
+	 		public ResponseEntity<MyErrorDetails> productHandler(AddressException e, WebRequest wr) {
+	 			
+	 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+	 			
+	 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+	 		}
+	 		
 	
 	
 }
