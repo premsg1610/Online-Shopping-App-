@@ -19,40 +19,24 @@ public class GlobalExceptionHandler {
 	    //-------------------------------------------------------------------------//
 		//									ADMIN EXCEPTIONS
 		//-------------------------------------------------------------------------//
-		@ExceptionHandler(AdminNotFoundException.class)
-		public ResponseEntity<MyErrorDetails> sellerHandler(AdminNotFoundException e, WebRequest wr) {
+		@ExceptionHandler(AdminException.class)
+		public ResponseEntity<MyErrorDetails> sellerHandler(AdminException e, WebRequest wr) {
 			
 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
 			
 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 		}
 		
-		@ExceptionHandler(AdminAlreadyExistException.class)
-		public ResponseEntity<MyErrorDetails> sellerHandler(AdminAlreadyExistException e, WebRequest wr) {
-			
-			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
-			
-			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-		}
 	
 	
 		
 		
 		//-------------------------------------------------------------------------//
 		//									CUSTOMER EXCEPTIONS
-		//-------------------------------------------------------------------------//
+		//-------------------------------------------------------------------------//	
 		
-		@ExceptionHandler(CustomerAlreadyExistsException.class) 
-		public ResponseEntity<MyErrorDetails> customerExists(CustomerAlreadyExistsException e, WebRequest wr) {
-			
-			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
-			
-			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-		}
-	
-		
-		@ExceptionHandler(CustomerNotFoundException.class)
-		public ResponseEntity<MyErrorDetails> sellerHandler(CustomerNotFoundException e, WebRequest wr) {
+		@ExceptionHandler(CustomerException.class)
+		public ResponseEntity<MyErrorDetails> sellerHandler(CustomerException e, WebRequest wr) {
 			
             MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
 			
