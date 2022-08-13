@@ -12,6 +12,13 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 
 @Entity
@@ -29,6 +36,6 @@ public class Admin {
 	private String mobile;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Product> productList = new ArrayList<>(); 
+	private List<Product> productList; 
 	
 }

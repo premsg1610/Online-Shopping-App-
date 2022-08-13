@@ -1,10 +1,15 @@
 package com.masai.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -54,8 +59,8 @@ public class Customer {
 	@OneToOne(cascade=CascadeType.ALL)
 	private Cart cart;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private Order order;
+//	@OneToMany(cascade=CascadeType.ALL)
+//	private List<Order> orders;
 	
 	
 	

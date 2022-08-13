@@ -18,10 +18,11 @@ import lombok.ToString;
 
 
 
-@MappedSuperclass
+@Entity
 public class User {
    
-	private String email;
+	@Id
+	private Integer mobile;
 	private String password;
 	
 }
