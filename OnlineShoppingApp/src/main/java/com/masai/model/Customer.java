@@ -1,5 +1,6 @@
 package com.masai.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,9 +20,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 
-
 @Entity
 public class Customer  {
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
@@ -48,6 +49,6 @@ public class Customer  {
 	@NotNull
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	Address address;
 }
