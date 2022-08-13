@@ -562,4 +562,3 @@ Caused by: java.io.IOException: The pipe is being closed
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2022-08-11 13:05:23.100
 !MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.wNOaRJer => OK
-
