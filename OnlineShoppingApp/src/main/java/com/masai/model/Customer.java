@@ -28,7 +28,6 @@ import lombok.ToString;
 @Entity
 public class Customer  {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer customerId;
@@ -40,13 +39,13 @@ public class Customer  {
 	
 //	@NotNull
 //	@Pattern(regexp="[a-z]{3,12}", message = "Last Name must not contains numbers or special characters")
+
 	private String lastName;
 //	
 //	@NotNull
 //	@Pattern(regexp="[0-9]{10}", message = "Mobile number must have 10 digits")
 	private Long mobile;
 	
-//	@NotNull
 //	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
 	private String password;
 	

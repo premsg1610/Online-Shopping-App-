@@ -63,6 +63,36 @@ public class GlobalExceptionHandler {
 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 		}
 		
+		
+		
+	       //-------------------------------------------------------------------------//
+		 		//									PRODUCT EXCEPTIONS
+		 		//-------------------------------------------------------------------------//
+		 		@ExceptionHandler(ProductException.class)
+		 		public ResponseEntity<MyErrorDetails> productHandler(ProductException e, WebRequest wr) {
+		 			
+		 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+		 			
+		 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		 		}
+		 		
+		 		
+		 		
+		 		
+		 		
+		 		
+		 		
+		 		//-------------------------------------------------------------------------//
+		 		//									ADDRESS EXCEPTIONS
+		 		//-------------------------------------------------------------------------//
+		 		@ExceptionHandler(AddressException.class)
+		 		public ResponseEntity<MyErrorDetails> productHandler(AddressException e, WebRequest wr) {
+		 			
+		 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
+		 			
+		 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+		 		}
+		 		
 	
 	
 		
@@ -135,34 +165,7 @@ public class GlobalExceptionHandler {
 	   
 	   
 	   
-	        //-------------------------------------------------------------------------//
-	 		//									PRODUCT EXCEPTIONS
-	 		//-------------------------------------------------------------------------//
-	 		@ExceptionHandler(ProductException.class)
-	 		public ResponseEntity<MyErrorDetails> productHandler(ProductException e, WebRequest wr) {
-	 			
-	 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
-	 			
-	 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-	 		}
-	 		
-	 		
-	 		
-	 		
-	 		
-	 		
-	 		
-	 		//-------------------------------------------------------------------------//
-	 		//									ADDRESS EXCEPTIONS
-	 		//-------------------------------------------------------------------------//
-	 		@ExceptionHandler(AddressException.class)
-	 		public ResponseEntity<MyErrorDetails> productHandler(AddressException e, WebRequest wr) {
-	 			
-	 			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(),wr.getDescription(false));
-	 			
-	 			return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
-	 		}
-	 		
+	 
 	
 	
 }

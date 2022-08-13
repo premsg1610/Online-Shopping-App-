@@ -51,11 +51,12 @@ public class CustomerServiceImpl implements CustomerService{
 	//The method to register the customer
 	@Override
 	public Customer registerCustomer(Customer customer) {
-		        
-	Customer newCustomer = cusDao.findByEmail(customer.getEmail());
+  
+	 Customer newCustomer = cusDao.findByEmail(customer.getEmail());
 	  if(newCustomer==null) {
 		return cusDao.save(customer);
 	  }
+	  
 	
 		throw new CustomerException("Customer already exist.");
 	}

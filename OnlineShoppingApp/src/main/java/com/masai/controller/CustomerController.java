@@ -1,5 +1,7 @@
 package com.masai.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,19 +25,31 @@ public class CustomerController {
     
 	@Autowired
 	private CustomerService cusService;
+
+	
+	
+	@GetMapping("/")
+	public ResponseEntity<List<Customer>> getAllCustomerDetailsHandler(){
+		
+		List<Customer> customerList = cusService.getAllCustomerDetails();
+		
+		return new ResponseEntity<>(customerList,HttpStatus.OK);
+	}
+
      
 	@GetMapping("/{customerId}/")
 	public ResponseEntity<Customer> getCustomerDetailsById(@PathVariable("customerId") Integer customerId){
 		   Customer existingCustomer = cusService.getCustomerDetails(customerId);
 		   return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
 	}
+
 	
 	@PostMapping("/")
      public ResponseEntity<Customer> registerCustomerHandler(@RequestBody Customer customer){
-    	 
+   
 	   Customer newCustomer = cusService.registerCustomer(customer);
-	   
-	  return new ResponseEntity<>(newCustomer,HttpStatus.CREATED);
+
+	  return new ResponseEntity<Customer>(newCustomer,HttpStatus.CREATED);
 		
      }
 	
