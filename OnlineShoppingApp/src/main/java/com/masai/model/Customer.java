@@ -28,7 +28,6 @@ public class Customer extends User {
     private Integer customerId;
 	
 	@NotNull
-	@NotNull
 	@Pattern(regexp="[a-z]{3,12}", message = "First Name must not contains numbers or special characters")
 	private String firstName;
 	
