@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-public class Admin {
+public class Admins {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
