@@ -51,6 +51,7 @@ public class CustomerServiceImpl implements CustomerService{
 	//The method to register the customer
 	@Override
 	public Customer registerCustomer(Customer customer) {
+<<<<<<< HEAD
 		
 	Customer customerOpt = cusDao.findByMobile(customer.getMobile());
 
@@ -58,6 +59,12 @@ public class CustomerServiceImpl implements CustomerService{
 	  if(customerOpt == null) {
 		Customer newCustomer = cusDao.save(customer);
 		return newCustomer;
+=======
+		        
+	Customer newCustomer = cusDao.findByEmail(customer.getEmail());
+	  if(newCustomer==null) {
+		return cusDao.save(customer);
+>>>>>>> master
 	  }
 	  
 	

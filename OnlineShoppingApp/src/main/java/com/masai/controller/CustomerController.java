@@ -25,23 +25,7 @@ public class CustomerController {
     
 	@Autowired
 	private CustomerService cusService;
-	
-	
-	@GetMapping("/")
-	public ResponseEntity<List<Customer>> getAllCustomerDetailsHandler(){
-		
-		List<Customer> customerList = cusService.getAllCustomerDetails();
-		
-		return new ResponseEntity<>(customerList,HttpStatus.OK);
-	}
 
-	@GetMapping("/{customerId}")
-	public ResponseEntity<Customer> getCustomerDetailsByIdHandler(@PathVariable("customerId") Integer customerId){
-		
-		Customer existingCustomer = cusService.getCustomerDetails(customerId);
-		
-		return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
-	}
 	
 	
 	@PostMapping("/")
