@@ -21,7 +21,7 @@ import lombok.ToString;
 
 
 @Entity
-public class Customer extends User {
+public class Customer  {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
