@@ -1,13 +1,13 @@
 package com.masai.service;
 
-import com.masai.model.Admins;
+import com.masai.model.Admin;
 
 public interface AdminService {
 	
-    public Admins createAdmin(Admins admin);
+    public Admin createAdmin(Admin admin);
 	
-	public Admins getAdminDetails(String email);
+	public Admin getAdminDetails(String email);
 	
-	public Admins updateAdmin(Admins userAdmin, String email);
+	public Admin updateAdmin(Admin userAdmin, String email);
 
 }
