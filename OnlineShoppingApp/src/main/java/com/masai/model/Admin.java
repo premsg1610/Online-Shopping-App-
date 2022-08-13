@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 
@@ -18,8 +20,12 @@ public class Admin extends User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer adminId;
+	
+	@NotNull(message = "Admin first-Name can not be null")
 	private String firstName;
 	private String lastName;
+	
+	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
 	
 	@OneToMany(cascade = CascadeType.ALL)
