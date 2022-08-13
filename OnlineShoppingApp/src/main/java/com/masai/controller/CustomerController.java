@@ -25,6 +25,7 @@ public class CustomerController {
     
 	@Autowired
 	private CustomerService cusService;
+
 	
 	
 	@GetMapping("/")
@@ -35,14 +36,13 @@ public class CustomerController {
 		return new ResponseEntity<>(customerList,HttpStatus.OK);
 	}
 
-	@GetMapping("/{customerId}")
-	public ResponseEntity<Customer> getCustomerDetailsByIdHandler(@PathVariable("customerId") Integer customerId){
-		
-		Customer existingCustomer = cusService.getCustomerDetails(customerId);
-		
-		return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
+     
+	@GetMapping("/{customerId}/")
+	public ResponseEntity<Customer> getCustomerDetailsById(@PathVariable("customerId") Integer customerId){
+		   Customer existingCustomer = cusService.getCustomerDetails(customerId);
+		   return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
 	}
-	
+
 	
 	@PostMapping("/")
      public ResponseEntity<Customer> registerCustomerHandler(@RequestBody Customer customer){
