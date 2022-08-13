@@ -1,11 +1,14 @@
 package com.masai.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -13,11 +16,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 
+@Entity
 public class Address {
 
-//	private Integer addressId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer addressId;
 	
 	@NotNull(message = "streetNo cannot be null")
 	private String streetNo;

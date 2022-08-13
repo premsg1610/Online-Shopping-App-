@@ -31,7 +31,7 @@ public class Cart {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String cartId;
+	private Integer cartId;
 		
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Product> products;

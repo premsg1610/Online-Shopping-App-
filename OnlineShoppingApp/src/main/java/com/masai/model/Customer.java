@@ -1,5 +1,6 @@
 package com.masai.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,13 +22,12 @@ import lombok.ToString;
 
 
 @Entity
-public class Customer extends User {
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
     private Integer customerId;
 	
-	@NotNull
 	@NotNull
 	@Pattern(regexp="[a-z]{3,12}", message = "First Name must not contains numbers or special characters")
 	private String firstName;
@@ -48,10 +48,17 @@ public class Customer extends User {
 	@NotNull
 	private String email;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	Address address;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Cart cart;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Order order;
+	
+	
+	
+	
 	
 }

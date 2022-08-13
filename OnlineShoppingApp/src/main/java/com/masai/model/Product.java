@@ -1,9 +1,11 @@
 package com.masai.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -24,7 +26,7 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String productId;
+	private Integer productId;
 	
 	@NotNull(message = "Product name cannot be empty")
 	private String productName;
@@ -46,6 +48,7 @@ public class Product {
 	private Integer quantity;
 	
 	@NotNull(message = "Category cannot be empty")
+	@OneToOne(cascade=CascadeType.ALL)
 	private Category category;
 	
 	

@@ -1,15 +1,14 @@
 package com.masai.model;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -17,24 +16,24 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 
 
+@Entity
 public class Order {
 
-	private String orderId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer orderId;
 	private LocalDate orderDate;
 	private String orderStatus;
 	
-	@Embedded
-	private Customer customer;
 	
-	@Embedded
-	@ElementCollection
-	private List<Product> productlist;
-	
-	@Embedded
-	private Address address;
+//	
+//	
+//	private List<Product> productlist;
+//	
+//	
+//	private Address address;
 	
 	
 }
