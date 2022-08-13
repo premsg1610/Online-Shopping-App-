@@ -32,4 +32,8 @@ public class Customer extends User {
 	
 	@OneToOne
 	Address address;
+	
+	@OneToOne
+	private Cart cart;
+	
 }
