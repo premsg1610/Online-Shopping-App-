@@ -52,8 +52,8 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer registerCustomer(Customer customer) {
 		        
-	Optional<Customer> customerOpt = cusDao.findById(customer.getCustomerId());
-	  if(!customerOpt.isPresent()) {
+	Customer newCustomer = cusDao.findByEmail(customer.getEmail());
+	  if(newCustomer==null) {
 		return cusDao.save(customer);
 	  }
 	
