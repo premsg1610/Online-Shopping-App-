@@ -14,9 +14,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-
-
 
 @Entity
 public class User {

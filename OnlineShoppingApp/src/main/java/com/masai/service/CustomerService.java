@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.masai.model.Customer;
 
-@Service
+
 public interface CustomerService {
   
 	public Customer registerCustomer(Customer customer);
