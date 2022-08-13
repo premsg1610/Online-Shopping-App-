@@ -2,6 +2,8 @@ package com.masai.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.masai.exceptions.CustomerException;
 import com.masai.model.Customer;
 import com.masai.repository.CustomerDao;
 
