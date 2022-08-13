@@ -21,7 +21,8 @@ import lombok.ToString;
 @AllArgsConstructor
 
 @Entity
-public class Customer {
+public class Customer  {
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
