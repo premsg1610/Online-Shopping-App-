@@ -3,11 +3,9 @@ package com.masai.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.masai.model.Customer;
-
+import com.masai.model.Address;
 
 @Repository
-public interface CustomerDao extends JpaRepository<Customer, Integer> {
+public interface AddressDao extends JpaRepository<Address, Integer> {
 
-	public Customer findByMobile(Long mobile);
 }
