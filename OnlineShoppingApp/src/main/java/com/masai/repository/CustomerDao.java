@@ -8,5 +8,6 @@ import com.masai.model.Customer;
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer> {
-
+    
+	public Customer findByEmail(String email);
 }
