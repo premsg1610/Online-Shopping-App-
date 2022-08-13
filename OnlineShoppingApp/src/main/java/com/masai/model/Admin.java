@@ -15,7 +15,7 @@ import javax.validation.constraints.Pattern;
 
 
 @Entity
-public class Admin extends User {
+public class Admin {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

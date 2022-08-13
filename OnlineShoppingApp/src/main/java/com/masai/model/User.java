@@ -17,12 +17,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 
 
-@Entity
+
 @MappedSuperclass
 public class User {
    
-	
-	@Id
 	private String email;
 	private String password;
 	
