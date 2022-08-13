@@ -1,6 +1,5 @@
 package com.masai.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,7 +34,7 @@ public class Admin {
 	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Product> productList; 
 	
 }
