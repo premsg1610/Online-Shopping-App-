@@ -23,16 +23,16 @@ public class AdminController {
 	
 	
 	//to register admin
-	@PostMapping(value = "/saveAdmin",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/saveAdmin")
 	public Admin saveAdminHandler(@RequestBody Admin admin)
 	{
 		return adminServiceImpl.createAdmin(admin);
 	}
 	
-	@GetMapping
-	public Admin getAdminDetailsHandler(@PathVariable String email)
+	@GetMapping("/getAdmin/{mobile}")
+	public Admin getAdminDetailsHandler(@PathVariable("mobile") String mobile)
 	{
-		return adminServiceImpl.getAdminDetails(email);
+		return adminServiceImpl.getAdminDetails(mobile);
 	}
 	
 	// to update existing admin details by passing its login key

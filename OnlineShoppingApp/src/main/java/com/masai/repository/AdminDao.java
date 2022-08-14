@@ -7,5 +7,7 @@ import com.masai.model.Admin;
 
 @Repository
 public interface AdminDao extends JpaRepository<Admin, Integer>{
+	
+	public Admin findByMobile(String mobile);
 
 }
