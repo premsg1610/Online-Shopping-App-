@@ -17,5 +17,11 @@ public interface CustomerService {
 	
 	public Customer getCustomerDetails(Integer customerId);
 	
+	//By -> Harshit//
+//    public Customer updateCustomer(Customer customer, String key);
+//	
+//	public Customer deleteCustomer(String key);
+//	
+//	public Customer getCustomerDetails(String key);
 	
 }
