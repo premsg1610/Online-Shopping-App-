@@ -118,7 +118,8 @@ public class CustomerServiceImpl implements CustomerService{
 					if(p.getProductName().equals(product.getProductName())){
 		            	p.setQuantity(p.getQuantity()+product.getQuantity());
 		            	flag=true;
-		            	break;
+		            	
+		            	
 		            	
 					}
 		         
@@ -133,11 +134,13 @@ public class CustomerServiceImpl implements CustomerService{
 					newCart.setProductList(new ArrayList<>());
 					customerOpt.setCart(newCart);
 					customerOpt.getCart().getProductList().add(product);
+					
 				}
 		      
 		
 		
 		   cusDao.save(customerOpt);
+		  return product;
 
 		  }
 	  
