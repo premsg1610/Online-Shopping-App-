@@ -99,24 +99,7 @@ public class GlobalExceptionHandler {
 		
 		
 		
-		   //-------------------------------------------------------------------------//
-		   //								GLOBAL EXCEPTIONS
-		   //-------------------------------------------------------------------------//
-	
-	
-        //	if any logical error happens than this exception will be thrown.
-	
-		@ExceptionHandler(Exception.class)
-		public ResponseEntity<MyErrorDetails> logicalHandler(Exception e, WebRequest wr){
 		
-			System.out.println("Inside the Exception Handler...");
-			
-			MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
-			
-			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-				
-	    }
-	
 		
 		
 		
@@ -161,6 +144,26 @@ public class GlobalExceptionHandler {
 	    }
 	   
 	   
+	   
+	   
+	   //-------------------------------------------------------------------------//
+	   //								GLOBAL EXCEPTIONS
+	   //-------------------------------------------------------------------------//
+
+
+    //	if any logical error happens than this exception will be thrown.
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<MyErrorDetails> logicalHandler(Exception e, WebRequest wr){
+	
+		System.out.println("Inside the Exception Handler...");
+		
+		MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
+		
+		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+			
+    }
+
 	   
 	   
 	   
