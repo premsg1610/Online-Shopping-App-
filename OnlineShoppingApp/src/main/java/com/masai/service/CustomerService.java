@@ -21,11 +21,14 @@ public interface CustomerService {
 	public Product addProductToCart(Product product,String mobile);
 	
 	//By -> Harshit//
-//    public Customer updateCustomer(Customer customer, String key);
-//	
-//	public Customer deleteCustomer(String key);
-//	
-//	public Customer getCustomerDetails(String key);
+	
+	public Customer createCustomer(Customer customer);
+	
+    public Customer updateCustomer(Customer customer, String key);
+	
+	public Customer deleteCustomer(String key);
+	
+	public Customer getCustomerDetails(String key);
 	
 	
 	
