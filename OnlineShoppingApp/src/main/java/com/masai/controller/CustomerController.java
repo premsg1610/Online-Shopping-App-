@@ -88,14 +88,14 @@ public class CustomerController {
 	
 	
 	
-	@PostMapping("/product")
-    public ResponseEntity<Product> addProductHandler(@Valid @RequestBody Product product){
-  
-	   Product newProduct = prodService.addProduct(product);
-
-	  return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
-		
-    }
+//	@PostMapping("/product")
+//    public ResponseEntity<Product> addProductHandler(@Valid @RequestBody Product product){
+//  
+//	   Product newProduct = prodService.addProduct(product);
+//
+//	  return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
+//		
+//    }
 	
 	@PostMapping("/cart/{mobile}")
 	public ResponseEntity<Product> addProductToCartHandler(@Valid @RequestBody Product product ,@PathVariable("mobile") String mobile){

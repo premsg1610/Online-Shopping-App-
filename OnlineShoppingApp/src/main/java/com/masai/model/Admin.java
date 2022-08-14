@@ -29,16 +29,18 @@ public class Admin {
 	
 	private String lastName;
 	
-	@Pattern(regexp="[6-9]\\d{9}", message = "Only Valid for 10 digit indian phone number")
+//	@Pattern(regexp="[6-9]\\d{9}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
 
+
+
 	
-	@NotNull
-	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
+//	@NotNull
+//	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
 	private String password;
 	
-	@Email
-	@NotNull
+//	@Email
+//	@NotNull
 	private String email;
 
 }
