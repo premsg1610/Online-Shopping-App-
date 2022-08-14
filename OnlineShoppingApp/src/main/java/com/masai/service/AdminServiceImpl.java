@@ -20,14 +20,13 @@ public class AdminServiceImpl  implements AdminService{
 	@Override
 	public Admin createAdmin(Admin admin) {                      // for register a admin
 		
-		Optional<Admin> a = adminDao.findById(admin.getAdminId());
-		if(!a.isPresent())
+		Admin a = adminDao.findByMobile(admin.getMobile());
+		if(a==null)
 		{
 			return adminDao.save(admin);
-			
 		}
 		else {
-			throw new AdminException("I found exception in admin");
+			throw new AdminException("The user is already present in the database");
 		}
 		
 	}
@@ -35,8 +34,15 @@ public class AdminServiceImpl  implements AdminService{
 	
 	@Override
 	public Admin getAdminDetails(String mobile) {
+		Admin a = adminDao.findByMobile(mobile);
+		if(a==null)
+		{
+			throw new AdminException("The user is already present in the database");
+		}
+		else {
+			return a;
+		}
 		
-	return null;
 	}
 
 	@Override

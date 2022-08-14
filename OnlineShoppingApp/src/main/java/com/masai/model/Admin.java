@@ -24,17 +24,18 @@ import lombok.NoArgsConstructor;
 public class Admin {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer adminId;
 	
-	@NotNull(message = "Admin first-Name can not be null")
+//	@NotNull(message = "Admin first-Name can not be null")
 	private String firstName;
 	private String lastName;
 	
-	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
+//	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
+	private String password;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Product> productList; 
+//	@OneToMany(cascade=CascadeType.ALL)
+//	private List<Product> productList; 
 	
 }
