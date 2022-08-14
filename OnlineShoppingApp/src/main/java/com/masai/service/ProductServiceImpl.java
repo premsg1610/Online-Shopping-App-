@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		else {
 			product1.setQuantity(product1.getQuantity()+product.getQuantity());
-			return product1;
+			return prodDao.save(product1);
 		}
 	}
 

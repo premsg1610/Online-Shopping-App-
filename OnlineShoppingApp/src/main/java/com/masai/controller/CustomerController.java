@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Customer;
+import com.masai.model.Product;
 import com.masai.service.CustomerService;
+import com.masai.service.ProductService;
 
 
 
@@ -27,6 +29,11 @@ public class CustomerController {
     
 	@Autowired
 	private CustomerService cusService;
+	
+	
+	@Autowired
+	private ProductService prodService;
+	
 	
 	
 	@GetMapping("/")
@@ -81,7 +88,13 @@ public class CustomerController {
 	
 	
 	
-	
-	
+	@PostMapping("/product")
+    public ResponseEntity<Product> addProductHandler(@Valid @RequestBody Product product){
+  
+	   Product newProduct = prodService.addProduct(product);
+
+	  return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
+		
+    }
 	
 }
