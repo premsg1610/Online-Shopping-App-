@@ -8,4 +8,5 @@ import com.masai.model.Product;
 @Repository
 public interface ProductDao extends JpaRepository<Product, Integer> {
 
+	public Product findByProductName(String productName);
 }

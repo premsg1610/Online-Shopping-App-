@@ -51,13 +51,15 @@ public class CustomerServiceImpl implements CustomerService{
 	//The method to register the customer
 	@Override
 	public Customer registerCustomer(Customer customer) {
-  
-	 Customer newCustomer = cusDao.findByEmail(customer.getEmail());
-	  if(newCustomer==null) {
-		return cusDao.save(customer);
+		
+	Customer customerOpt = cusDao.findByMobile(customer.getMobile());
+
+//	 System.out.println(customerOpt.getMobile());
+	  if(customerOpt == null) {
+		Customer newCustomer = cusDao.save(customer);
+		return newCustomer;
 	  }
 	  
-	
 		throw new CustomerException("Customer already exist.");
 	}
 
@@ -79,17 +81,22 @@ public class CustomerServiceImpl implements CustomerService{
 
 	//The method to update the customer byId
 	@Override
-	public Customer updateCustomerById(Integer customerId, Customer customer) {
+	public Customer updateCustomerById(Customer customer) {
 		
-	    	Optional<Customer> customerOpt = cusDao.findById(customerId);
+	    	Optional<Customer> customerOpt = cusDao.findById(customer.getCustomerId());
 		     
 	    	if(customerOpt.isPresent()) {
 			      
 	    	return cusDao.save(customer);
 		   }
 	  
-	    	throw new CustomerException("Customer does not exist with customer id :"+customerId);
+	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
 	}
+	
+	
+	
+	
+
 
 
 		
