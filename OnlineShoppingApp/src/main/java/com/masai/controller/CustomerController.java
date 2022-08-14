@@ -97,4 +97,13 @@ public class CustomerController {
 		
     }
 	
+	@PostMapping("/cart/{mobile}")
+	public ResponseEntity<Product> addProductToCartHandler(@Valid @RequestBody Product product ,@PathVariable("mobile") String mobile){
+		
+		 Product product2=  cusService.addProductToCart(product, mobile);
+		
+		   return new ResponseEntity<Product>(product2,HttpStatus.CREATED);
+		
+	}
+	
 }

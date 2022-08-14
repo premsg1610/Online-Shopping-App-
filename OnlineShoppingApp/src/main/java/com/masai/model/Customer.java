@@ -35,11 +35,11 @@ public class Customer  {
 
 
 	@NotNull
-	@Pattern(regexp="[a-z]{3,12}", message = "First Name must not contains numbers or special characters")
+	@Pattern(regexp="[a-zA-Z]{3,12}", message = "First Name must not contains numbers or special characters")
 	private String firstName;
 	
 	@NotNull
-	@Pattern(regexp="[a-z]{3,12}", message = "Last Name must not contains numbers or special characters")
+	@Pattern(regexp="[a-zA-Z]{3,12}", message = "Last Name must not contains numbers or special characters")
 	private String lastName;
 	
 	
