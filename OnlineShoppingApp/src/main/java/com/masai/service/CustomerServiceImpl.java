@@ -92,11 +92,6 @@ public class CustomerServiceImpl implements CustomerService{
 	  
 	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
 	}
-	
-	
-	
-	
-
 
 
 		
