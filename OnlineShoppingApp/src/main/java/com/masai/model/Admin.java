@@ -21,15 +21,17 @@ import lombok.NoArgsConstructor;
 public class Admin {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer adminId;
 	
 	@NotNull(message = "Admin first-Name can not be null")
 	private String firstName;
+	
 	private String lastName;
 	
-	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
+	@Pattern(regexp="[6-9]\\d{9}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
+
 	
 	@NotNull
 	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
