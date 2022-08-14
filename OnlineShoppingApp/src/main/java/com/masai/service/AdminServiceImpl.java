@@ -1,5 +1,7 @@
 package com.masai.service;
 
-public class AdminServiceImpl {
+public class AdminServiceImpl implements AdminServiceInterface{
+
+
 
 }

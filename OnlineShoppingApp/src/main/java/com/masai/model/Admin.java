@@ -1,6 +1,5 @@
 package com.masai.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -32,8 +31,13 @@ public class Admin {
 	private String firstName;
 	private String lastName;
 	
-	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
+	@NotNull
+	@Pattern(regexp="[6789][0-9]{10}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
+	
+	@NotNull
+	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
+	private String password;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Product> productList; 
