@@ -31,11 +31,11 @@ public class Admin {
 	private String firstName;
 	private String lastName;
 	
-//	@Pattern(regexp="[0-9]{10}", message = "Only Valid for 10 digit indian phone number")
+	@Pattern(regexp="[6-9]\\d{9}", message = "Only Valid for 10 digit indian phone number")
 	private String mobile;
 	private String password;
 	
-//	@OneToMany(cascade=CascadeType.ALL)
-//	private List<Product> productList; 
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Product> productList; 
 	
 }
