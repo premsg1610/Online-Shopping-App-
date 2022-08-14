@@ -1,5 +1,6 @@
 package com.masai.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exceptions.CustomerException;
+import com.masai.model.Cart;
 import com.masai.model.Customer;
+import com.masai.model.Product;
+import com.masai.repository.CartDao;
 import com.masai.repository.CustomerDao;
 
 
@@ -16,6 +20,9 @@ public class CustomerServiceImpl implements CustomerService{
          
 	@Autowired
 	private CustomerDao cusDao;
+	
+	@Autowired
+	private CartDao cartDao;
 	
 	
 	//The method to get all customer details
@@ -92,6 +99,56 @@ public class CustomerServiceImpl implements CustomerService{
 	  
 	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
 	}
+
+
+	@Override
+	public Product addProductToCart(Product product,String mobile) {
+	
+	     Customer customerOpt = cusDao.findByMobile(mobile);
+	     
+		   if(customerOpt!=null) {
+			
+		      if(customerOpt.getCart()!=null) {
+		    	  
+		    	  List<Product> productList =	customerOpt.getCart().getProductList();
+				  Boolean flag=false;
+				  
+				  for(Product p:productList) {
+					
+					if(p.getProductName().equals(product.getProductName())){
+		            	p.setQuantity(p.getQuantity()+product.getQuantity());
+		            	flag=true;
+		            	
+		            	
+		            	
+					}
+		         
+				}	
+				if(flag=false) {
+					productList.add(product);
+				}
+			
+		    }
+		      else {
+					Cart newCart=new Cart();
+					newCart.setProductList(new ArrayList<>());
+					customerOpt.setCart(newCart);
+					customerOpt.getCart().getProductList().add(product);
+					
+				}
+		      
+		
+		
+		   cusDao.save(customerOpt);
+		  return product;
+
+		  }
+	  
+	    	throw new CustomerException("Customer does not exist with customer id :"+ customerOpt.getCustomerId());
+		 
+	    	
+	}
+	
 
 
 		

@@ -24,20 +24,26 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer addressId;
 	
+	
 	@NotNull(message = "streetNo cannot be null")
 	private String streetNo;
 	
 	@NotNull(message = "buildingName cannot be null")
 	private String buildingName;
 	
+	
 	@NotNull(message = "city cannot be null")
 	private String city;
+	
+	
 	
 	@NotNull(message = "state cannot be null")
 	private String state;
 	
 	@NotNull(message = "country cannot be null")
 	private String country;
+	
+	
 	
 	@NotNull
 	@Pattern(regexp="[0-9]{6}", message = "Only Valid for 6 digit indian pincode")

@@ -1,5 +1,6 @@
 package com.masai.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao prodDao;
 	
+
 	@Override
 	public Product addProduct(Product product) {
 		
@@ -23,8 +25,13 @@ public class ProductServiceImpl implements ProductService {
 		}
 		else {
 			product1.setQuantity(product1.getQuantity()+product.getQuantity());
+
 			return prodDao.save(product1);
 		}
 	}
 
+	
+
+		
 }
+
