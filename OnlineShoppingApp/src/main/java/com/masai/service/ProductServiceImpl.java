@@ -12,6 +12,8 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductDao prodDao;
 	
+	
+	
 	@Override
 	public Product addProduct(Product product) {
 		
