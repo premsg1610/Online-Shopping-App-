@@ -38,8 +38,5 @@ public class Admin {
 	@Email
 	@NotNull
 	private String email;
-//	
-//	@OneToMany(cascade=CascadeType.ALL)
-//	private List<Product> productList; 
-//	
+
 }
