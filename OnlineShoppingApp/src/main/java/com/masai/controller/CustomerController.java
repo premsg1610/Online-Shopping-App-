@@ -1,5 +1,9 @@
 package com.masai.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Customer;
+import com.masai.model.Product;
 import com.masai.service.CustomerService;
+import com.masai.service.ProductService;
 
 
 
@@ -23,19 +29,36 @@ public class CustomerController {
     
 	@Autowired
 	private CustomerService cusService;
+	
+	
+	@Autowired
+	private ProductService prodService;
+	
+	
+	
+	@GetMapping("/")
+	public ResponseEntity<List<Customer>> getAllCustomerDetailsHandler(){
+		
+		List<Customer> customerList = cusService.getAllCustomerDetails();
+		
+		return new ResponseEntity<>(customerList,HttpStatus.OK);
+	}
+
      
 	@GetMapping("/{customerId}/")
 	public ResponseEntity<Customer> getCustomerDetailsById(@PathVariable("customerId") Integer customerId){
 		   Customer existingCustomer = cusService.getCustomerDetails(customerId);
 		   return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
 	}
+
+
 	
 	@PostMapping("/")
-     public ResponseEntity<Customer> registerCustomerHandler(@RequestBody Customer customer){
-    	 
+     public ResponseEntity<Customer> registerCustomerHandler(@Valid @RequestBody Customer customer){
+   
 	   Customer newCustomer = cusService.registerCustomer(customer);
-	   
-	  return new ResponseEntity<>(newCustomer,HttpStatus.CREATED);
+
+	  return new ResponseEntity<Customer>(newCustomer,HttpStatus.CREATED);
 		
      }
 	
@@ -43,7 +66,7 @@ public class CustomerController {
 	
 	
 	@DeleteMapping("/{customerId}/")
-    public ResponseEntity<Customer> deleteCustomerHandler(@PathVariable ("cutomerId") Integer customerId){
+    public ResponseEntity<Customer> deleteCustomerHandler(@PathVariable ("customerId") Integer customerId){
    	 
 	   Customer deletedCustomer = cusService.deleteCustomerById(customerId);
 	   
@@ -54,10 +77,10 @@ public class CustomerController {
 	
 	
 	
-	@PutMapping("/{customerId}/")
-    public ResponseEntity<Customer> updateCustomerHandler(@PathVariable("customerId") Integer customerId , @RequestBody Customer customer){
+	@PutMapping("/")
+    public ResponseEntity<Customer> updateCustomerHandler(@Valid @RequestBody Customer customer){
    	 
-	   Customer updatedCustomer = cusService.updateCustomerById(customerId,customer);
+	   Customer updatedCustomer = cusService.updateCustomerById(customer);
 	   
 	  return new ResponseEntity<>(updatedCustomer,HttpStatus.ACCEPTED);
 		
@@ -65,7 +88,13 @@ public class CustomerController {
 	
 	
 	
-	
-	
+	@PostMapping("/product")
+    public ResponseEntity<Product> addProductHandler(@Valid @RequestBody Product product){
+  
+	   Product newProduct = prodService.addProduct(product);
+
+	  return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
+		
+    }
 	
 }

@@ -9,9 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -30,5 +31,6 @@ public class Cart {
 	private Integer cartId;
 		
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Product> products;
+	@JsonIgnore
+	private List<Product> productList;
 }

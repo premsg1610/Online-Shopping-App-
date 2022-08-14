@@ -11,11 +11,20 @@ public interface CustomerService {
 	 
 	public Customer deleteCustomerById(Integer customerId);
 	
-	public Customer updateCustomerById(Integer customerId,Customer customer);
+	public Customer updateCustomerById(Customer customer);
 	
 	public  List<Customer> getAllCustomerDetails();
 	
 	public Customer getCustomerDetails(Integer customerId);
+	
+	//By -> Harshit//
+//    public Customer updateCustomer(Customer customer, String key);
+//	
+//	public Customer deleteCustomer(String key);
+//	
+//	public Customer getCustomerDetails(String key);
+	
+	
 	
 	
 }
