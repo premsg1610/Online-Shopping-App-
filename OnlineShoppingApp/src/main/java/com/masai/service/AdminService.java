@@ -6,8 +6,10 @@ public interface AdminService {
 	
     public Admin createAdmin(Admin admin);
 	
-	public Admin getAdminDetails(String email);
+    public Admin updateAdmin(Admin admin, String key);
 	
-	public Admin updateAdmin(Admin userAdmin, String email);
+	public Admin deleteAdmin(String key);
+	
+	public Admin getAdminDetails(String key);
 
 }

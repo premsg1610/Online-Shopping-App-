@@ -16,14 +16,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CurrentUserSession {
+public class AdminCurrentUserSession {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	
-	private Integer customerId;
+	private Integer adminId;
 	
 	private String uuid;
 	
@@ -31,9 +31,9 @@ public class CurrentUserSession {
 	
 	
 	
-	public CurrentUserSession(Integer customerId, String uuid, LocalDateTime localDateTime) {
+	public AdminCurrentUserSession(Integer adminId, String uuid, LocalDateTime localDateTime) {
 		super();
-		this.customerId = customerId;
+		this.adminId = adminId;
 		this.uuid = uuid;
 		this.localDateTime = localDateTime;
 	}
