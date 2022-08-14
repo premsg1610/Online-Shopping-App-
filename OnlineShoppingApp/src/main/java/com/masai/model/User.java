@@ -16,6 +16,7 @@ import lombok.ToString;
 @Entity
 public class User {
    
+	
 	@Id
 	private Integer mobile;
 	private String password;
