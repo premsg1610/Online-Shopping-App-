@@ -125,6 +125,7 @@ public class CustomerController {
 	}	
 	
 	
+	
 	// To update existing user details by passing its login key
 		@PutMapping(value = "/updateCustomerByKey")
 		public Customer updateCustomer( @RequestBody Customer customer, @RequestParam(required = false) String key) {
