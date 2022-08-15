@@ -1,8 +1,9 @@
 package com.masai.service;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
+
 import com.masai.model.Customer;
+import com.masai.model.Product;
 
 
 public interface CustomerService {
@@ -17,12 +18,17 @@ public interface CustomerService {
 	
 	public Customer getCustomerDetails(Integer customerId);
 	
+	public Product addProductToCart(Product product,String mobile);
+	
 	//By -> Harshit//
-//    public Customer updateCustomer(Customer customer, String key);
-//	
-//	public Customer deleteCustomer(String key);
-//	
-//	public Customer getCustomerDetails(String key);
+	
+	public Customer createCustomer(Customer customer);
+	
+    public Customer updateCustomer(Customer customer, String key);
+	
+	public Customer deleteCustomer(String key);
+	
+	public Customer getCustomerDetails(String key);
 	
 	
 	

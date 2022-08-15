@@ -1,6 +1,5 @@
 package com.masai.service;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,49 +8,60 @@ import com.masai.exceptions.AdminException;
 import com.masai.model.Admin;
 
 import com.masai.repository.AdminDao;
+import com.masai.util.GetCurrentLoginAdminSessionDetailsImpl;
 
 @Service
 public class AdminServiceImpl  implements AdminService{
 	
 	@Autowired
-	private AdminDao adminDao;     // Dao interface
+	private AdminDao adminDAO;
 	
+	@Autowired
+	private GetCurrentLoginAdminSessionDetailsImpl getCurrentLoginUser;
 
 	@Override
-	public Admin createAdmin(Admin admin) {                      // for register a admin
+	public Admin createAdmin(Admin admin) {
+		Admin oldAdmin = adminDAO.findByMobile(admin.getMobile());
 		
-		Admin a = adminDao.findByMobile(admin.getMobile());
-		if(a==null)
+		if(oldAdmin==null)
 		{
-			return adminDao.save(admin);
+			return adminDAO.save(admin);
 		}
-		else {
-			throw new AdminException("The user is already present in the database");
-		}
+		 throw new AdminException("Admin does not exist");
 		
 	}
-	
-	
+
 	@Override
-	public Admin getAdminDetails(String mobile) {
-		Admin a = adminDao.findByMobile(mobile);
-		if(a==null)
+	public Admin updateAdmin(Admin admin, String key) {
+		Admin customer2 = getCurrentLoginUser.getCurrentAdmin(key);	
+		
+		if(customer2.getMobile().equals(admin.getMobile()))
 		{
-			throw new AdminException("The user is already present in the database");
+			customer2.setFirstName(admin.getFirstName());
+			customer2.setLastName(admin.getLastName());
+			customer2.setEmail(admin.getEmail());
+			customer2.setPassword(admin.getPassword());
+			return admin;
 		}
-		else {
-			return a;
+		else{
+			throw new AdminException("No user found.. try login first");
 		}
-		
 	}
 
 	@Override
-	public Admin updateAdmin(Admin userAdmin ,String key) {            // for update admin
-		return null;
-		
+	public Admin deleteAdmin(String key) {
+		Admin admin = getCurrentLoginUser.getCurrentAdmin(key);		
+		adminDAO.delete(admin);
+		return admin;
 	}
 
-	
+	@Override
+	public Admin getAdminDetails(String key) {
+		Admin admin = getCurrentLoginUser.getCurrentAdmin(key);	
+		System.out.println(admin);
+		return admin;
+	}
+
 
 
 	
