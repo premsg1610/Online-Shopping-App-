@@ -18,7 +18,14 @@ public interface CustomerService {
 	
 	public Customer getCustomerDetails(Integer customerId);
 	
-	public Product addProductToCart(Product product,String mobile);
+//	public Product addProductToCart(Product product,String mobile);
+	
+    public String addProductToCart(String productName, Integer quantity, String mobile);
+	
+	public String removeProductFromCart(String productName, String mobile);
+	
+	public Product updateProductQuantity(String productName);
+
 	
 	//By -> Harshit//
 	

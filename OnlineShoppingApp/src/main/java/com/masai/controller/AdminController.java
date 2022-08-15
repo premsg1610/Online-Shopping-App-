@@ -40,7 +40,8 @@ public class AdminController {
 	public Admin getAdminDetailsHandler(@PathVariable("mobile") String mobile)
 	{
 		return adminServiceImpl.getAdminDetails(mobile);
-
+*/
+	
 	@PostMapping("/addAdmin")
 	public Admin registerCustomer(@RequestBody Admin admin) {
 
@@ -48,7 +49,6 @@ public class AdminController {
 
 
 	}
-	*/
 	
 
 	// To update existing user details by passing its login key

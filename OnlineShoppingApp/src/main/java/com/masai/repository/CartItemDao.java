@@ -3,10 +3,9 @@ package com.masai.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.masai.model.Cart;
+import com.masai.model.CartItem;
 
 @Repository
-public interface CartDao extends JpaRepository<Cart, Integer> {
+public interface CartItemDao extends JpaRepository<CartItem, Integer> {
 
-//	public void deleteByName(String productName);
 }

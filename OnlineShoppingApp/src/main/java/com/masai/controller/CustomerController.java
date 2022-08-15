@@ -98,14 +98,61 @@ public class CustomerController {
 //		
 //    }
 	
-	@PostMapping("/cart/{mobile}")
-	public ResponseEntity<Product> addProductToCartHandler(@Valid @RequestBody Product product ,@PathVariable("mobile") String mobile){
+//	@PostMapping("/cart/{mobile}")
+//	public ResponseEntity<Product> addProductToCartHandler(@Valid @RequestBody Product product ,@PathVariable("mobile") String mobile){
+//		
+//		 Product product2=  cusService.addProductToCart(product, mobile);
+//		
+//		   return new ResponseEntity<Product>(product2,HttpStatus.CREATED);
+//		
+//	}
+	
+	
+	@PostMapping("/cart/{productName}/{quantity}/{mobile}")
+	public ResponseEntity<String> addProductToCartHandler(@PathVariable("productName") String productName,
+															@PathVariable("quantity") Integer quantity,
+												            @PathVariable("mobile") String mobile){
 		
-		 Product product2=  cusService.addProductToCart(product, mobile);
 		
-		   return new ResponseEntity<Product>(product2,HttpStatus.CREATED);
+		 String message =  cusService.addProductToCart(productName, quantity, mobile);
+		
+		   return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
 		
 	}
+	
+	
+	@PutMapping("/product/{productName}")
+    public ResponseEntity<Product> updateProductHandler(@PathVariable("productName") String productName){
+  
+	   Product updatedProduct = cusService.updateProductQuantity(productName);
+
+	  return new ResponseEntity<Product>(updatedProduct,HttpStatus.ACCEPTED);
+		
+    }
+	
+	@DeleteMapping("/product/{productId}")
+	public  ResponseEntity<Product> deleteProductHandler(@PathVariable("productId") Integer productId){
+		  Product deletedProduct =prodService.deleteProduct(productId);
+		  return new ResponseEntity<Product>(deletedProduct,HttpStatus.OK);
+		  
+	}
+	
+	
+	
+	
+	
+	@PostMapping("/removeCart/{productName}/{mobile}")
+	public ResponseEntity<String> removeProductFromCart(@PathVariable("productName") String productName,
+			                                            @PathVariable("mobile") String mobile){
+								
+		String message =  cusService.removeProductFromCart(productName, mobile);
+		
+		 return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
+		
+		
+	}
+	
+	
 	
 	
 	                            //Harshit //

@@ -57,13 +57,13 @@ public class Customer  {
 	private String email;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	Address address;
+	private Address address;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	Cart cart;
+	private Cart cart;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	List<Orders> orderList;
+	private List<Orders> orderList;
 	
 
 }

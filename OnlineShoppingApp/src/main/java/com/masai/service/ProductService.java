@@ -15,6 +15,9 @@ public interface ProductService {
 	public Product getProductByName(String name,String key);
 
 	public Product deleteProductByName(String name,String key);
+	
+//	prem
+	public Product deleteProduct(Integer productId);
 
 
 

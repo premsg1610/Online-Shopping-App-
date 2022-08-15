@@ -10,11 +10,15 @@ import org.springframework.stereotype.Service;
 import com.masai.CustomerLogin.GetCurrentLoginUserSessionDetailsImpl;
 import com.masai.exceptions.CustomerException;
 import com.masai.exceptions.LoginException;
+import com.masai.exceptions.ProductException;
 import com.masai.model.Cart;
+import com.masai.model.CartItem;
 import com.masai.model.Customer;
 import com.masai.model.Product;
 import com.masai.repository.CartDao;
+import com.masai.repository.CartItemDao;
 import com.masai.repository.CustomerDao;
+import com.masai.repository.ProductDao;
 
 
 @Service
@@ -25,6 +29,12 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	private CartDao cartDao;
+	
+	@Autowired
+	private ProductDao prodDao;
+	
+	@Autowired
+	private CartItemDao cartItemDao;
 	
 	
 	//The method to get all customer details
@@ -101,55 +111,158 @@ public class CustomerServiceImpl implements CustomerService{
 	  
 	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
 	}
+	
+	
+	
+	@Override
+	public Product updateProductQuantity(String productName) {
+		
+		Product existingProduct = prodDao.findByProductName(productName);
+		existingProduct.setQuantity(existingProduct.getQuantity()-1);
+	
+		return prodDao.save(existingProduct);
+
+	}
+
 
 
 	@Override
-	public Product addProductToCart(Product product,String mobile) {
-	
-	     Customer customerOpt = cusDao.findByMobile(mobile);
-	     
-		   if(customerOpt!=null) {
+	public String addProductToCart(String productName, Integer quantity, String mobile) {
+		
+		Customer customer = cusDao.findByMobile(mobile);
+		
+		if(customer != null)
+		{
+			Product existingProduct = prodDao.findByProductName(productName);
 			
-		      if(customerOpt.getCart()!=null) {
-		    	  
-		    	  List<Product> productList =	customerOpt.getCart().getProductList();
-				  Boolean flag=false;
-				  
-				  for(Product p:productList) {
-					
-					if(p.getProductName().equals(product.getProductName())){
-		            	p.setQuantity(p.getQuantity()+product.getQuantity());
-		            	flag=true;
-		            	
-		            	
-		            	
+			if(existingProduct != null) 
+			{
+				if(existingProduct.getQuantity() >= quantity)
+				{
+				
+					if(customer.getCart() == null)
+					{
+						Cart cart = new Cart();
+						
+						cart.setCartItemList(new ArrayList<>());
+						
+						CartItem newCartItem = new CartItem();
+						
+						newCartItem.setProductQuantity(quantity);
+						newCartItem.setProduct(existingProduct);
+						
+						cart.getCartItemList().add(newCartItem);
+						
+						customer.setCart(cart);
+						System.out.println("end of new cart method");
+						prodDao.save(existingProduct);
+						cusDao.save(customer);
+						
+						cartItemDao.save(newCartItem);
 					}
-		         
-				}	
-				if(flag=false) {
-					productList.add(product);
-				}
-			
-		    }
-		      else {
-					Cart newCart=new Cart();
-					newCart.setProductList(new ArrayList<>());
-					customerOpt.setCart(newCart);
-					customerOpt.getCart().getProductList().add(product);
 					
+					else 
+					{
+						List<CartItem> cartItemList = customer.getCart().getCartItemList();
+						
+						boolean flag = false;
+						
+						for(CartItem item : cartItemList)
+						{
+							if(item.getProduct().getProductName().equals(productName))
+							{
+								item.setProductQuantity(item.getProductQuantity() + quantity);
+								flag = true;
+								cartItemDao.save(item);
+								break;
+							}
+						}
+						
+						if(flag == false)
+						{
+							CartItem cartItem = new CartItem();
+							
+							cartItem.setProductQuantity(quantity);
+							cartItem.setProduct(existingProduct);
+							
+							cartItemList.add(cartItem);
+							cartItemDao.save(cartItem);
+						}
+					}
+					
+					existingProduct.setQuantity(existingProduct.getQuantity() - quantity);
+					
+					prodDao.save(existingProduct);
+					cusDao.save(customer);
+					
+					return "Product " + productName + " added to cart."; 
 				}
-		      
-		
-		
-		   cusDao.save(customerOpt);
-		  return product;
+				
+				throw new ProductException("Your quantity: " + quantity + " is more than available quantity: " + existingProduct.getQuantity());
+			}
+			
+			throw new ProductException("Product out of stock.");
+		}
 
-		  }
-	  
-	    	throw new CustomerException("Customer does not exist with customer id :"+ customerOpt.getCustomerId());
-		 
-	    	
+		throw new CustomerException("Customer not logged in");
 	}
+
+
+	
+	
+	
+//	delete item from cart and it should return to database
+	
+	
+	@Override
+	public String removeProductFromCart(String productName, String mobile) {
+		
+			Customer customer = cusDao.findByMobile(mobile);
+					
+			if(customer != null)
+			{
+				List<CartItem> cartItemList = customer.getCart().getCartItemList();
+				
+				for(CartItem c: cartItemList)
+				{
+					if(c.getProduct().getProductName().equals(productName))
+					{
+						c.setProductQuantity(c.getProductQuantity() - 1);
+						System.out.println(c.getProductQuantity() + " after removing from cart");
+//						cartItemDao.save(c);
+						if(c.getProductQuantity() == 0)
+						{
+							cartItemList.remove(c);
+							System.out.println("yha tak chal gya");
+//							cartDao.deleteByName(c.getProduct().getProductName());
+							cartItemDao.deleteById(c.getCartItemId());
+							
+						}
+						
+						System.out.println("yha tak chal gya 2");
+						Product product = prodDao.findByProductName(productName);
+						
+						product.setQuantity(product.getQuantity() + 1);
+						System.out.println("yha tak chal gya 3");
+						prodDao.save(product);
+						cartItemDao.save(c);
+//						cartDao.save(customer.getCart());
+						
+						if(cartItemList.size() == 0)
+						{
+							return "Product " +  productName + " removed from cart successfully." + " Cart is empty now.";
+						}
+						
+						return "Product " +  productName + " removed from cart successfully.";
+					}
+				}
+			}
+			
+			throw new CustomerException("Customer not logged in.");
+	}
+
+
+
 
 
 	
