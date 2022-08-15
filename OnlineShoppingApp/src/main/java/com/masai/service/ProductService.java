@@ -6,5 +6,7 @@ public interface ProductService {
 
 	public Product addProduct(Product product);
 
+   public Product deleteProduct(Integer productId);
+
 
 }

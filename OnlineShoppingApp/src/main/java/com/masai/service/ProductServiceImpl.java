@@ -1,9 +1,12 @@
 package com.masai.service;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.exceptions.ProductException;
 import com.masai.model.Product;
 import com.masai.repository.ProductDao;
 
@@ -29,6 +32,21 @@ public class ProductServiceImpl implements ProductService {
 			return prodDao.save(product1);
 		}
 	}
+	
+	@Override
+	public Product deleteProduct(Integer productId) {
+		
+       Optional<Product> product1 =  prodDao.findById(productId);
+		
+		if(!product1.isPresent())
+		{
+			throw new ProductException("Product Not Found");
+		}
+		prodDao.delete(product1.get());
+		
+	return	product1.get();
+	}
+
 
 	
 
