@@ -32,7 +32,6 @@ public class CurrentUserSession {
 	private LocalDateTime localDateTime;
 	
 	
-	
 	public CurrentUserSession(Integer customerId, String uuid, LocalDateTime localDateTime) {
 		super();
 		this.customerId = customerId;
