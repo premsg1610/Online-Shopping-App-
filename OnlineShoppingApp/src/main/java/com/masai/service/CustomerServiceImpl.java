@@ -231,7 +231,7 @@ public class CustomerServiceImpl implements CustomerService{
 						c.setProductQuantity(c.getProductQuantity() - 1);
 						System.out.println(c.getProductQuantity() + " after removing from cart");
 //						cartItemDao.save(c);
-						if(c.getProductQuantity() <= 0)
+						if(c.getProductQuantity() == 0)
 						{
 							cartItemList.remove(c);
 							System.out.println("yha tak chal gya");
