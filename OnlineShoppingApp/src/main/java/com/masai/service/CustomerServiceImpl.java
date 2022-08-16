@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.masai.CustomerLogin.GetCurrentLoginUserSessionDetailsImpl;
 import com.masai.exceptions.CustomerException;
+
 import com.masai.exceptions.LoginException;
+
 import com.masai.exceptions.ProductException;
 import com.masai.model.Cart;
 import com.masai.model.CartItem;
@@ -111,21 +113,24 @@ public class CustomerServiceImpl implements CustomerService{
 	  
 	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
 	}
+
 	
 	
 	
+	
+
 	@Override
 	public Product updateProductQuantity(String productName) {
 		
 		Product existingProduct = prodDao.findByProductName(productName);
 		existingProduct.setQuantity(existingProduct.getQuantity()-1);
+		return existingProduct;
 	
-		return prodDao.save(existingProduct);
-
 	}
-
-
-
+	
+	
+	
+	
 	@Override
 	public String addProductToCart(String productName, Integer quantity, String mobile) {
 		
@@ -265,6 +270,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 
+
 	
 	//Harshit//
 	
@@ -329,7 +335,7 @@ public class CustomerServiceImpl implements CustomerService{
 		return customer;
 	}
 
-	
+
 		
 	
 }

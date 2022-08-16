@@ -2,14 +2,19 @@ package com.masai.service;
 
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.exceptions.AdminException;
+
 import com.masai.exceptions.ProductException;
+
+import com.masai.exceptions.AdminException;
+
 import com.masai.model.Admin;
+
 import com.masai.model.Product;
 import com.masai.repository.ProductDao;
 import com.masai.util.GetCurrentLoginAdminSessionDetailsImpl;
@@ -153,6 +158,8 @@ public class ProductServiceImpl implements ProductService {
 		
 	return	product1.get();
 	}
+	
+	
 
 	
 
