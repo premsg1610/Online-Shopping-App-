@@ -118,4 +118,29 @@ public class AdminController {
 		return pService.deleteProductByName(name,key);
 	}
 	
+	
+	
+	
+	
+	
+	
+		
+//	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//	|                            Customers Control By Admin                                    |
+//	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	@GetMapping("/getCustomers")
+	public List<Customer> getCustomers(@RequestParam String key)
+	{
+		return aService.getCustomers(key);
+	}
+	
+	@GetMapping("/getCustomer")
+	public Customer getCustomer(@PathVariable String mobile,@RequestParam String key)
+	{
+		return aService.getCustomerByMobile(mobile, key);
+	}
+	
+	
+	
 }
