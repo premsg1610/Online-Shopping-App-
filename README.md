@@ -18,5 +18,6 @@ We were a team of 6 members from the Masai Web-17 Java batch. We worked on creat
 - Spring Boot
 - Spring data JPA
 - Hibernate
+- MySQL
 
 
