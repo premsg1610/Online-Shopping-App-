@@ -49,7 +49,7 @@ public class GetCurrentLoginUserSessionDetailsImpl implements GetCurrentLoginUse
 		Optional<CurrentUserSession> optional = sessionDAO.findByUuid(key);
 		
 		if(!optional.isPresent()) {
-			throw new LoginException("Unauthorized");
+			throw new LoginException("Customer not logged in, login first...");
 		}
 		
 		Integer customerId = optional.get().getCustomerId();

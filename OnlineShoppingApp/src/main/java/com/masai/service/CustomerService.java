@@ -8,15 +8,15 @@ import com.masai.model.Product;
 
 public interface CustomerService {
   
-	public Customer registerCustomer(Customer customer);
+//	public Customer registerCustomer(Customer customer);
 	 
-	public Customer deleteCustomerById(Integer customerId);
+//	public Customer deleteCustomerById(Integer customerId);
+//	
+//	public Customer updateCustomerById(Customer customer);
 	
-	public Customer updateCustomerById(Customer customer);
+//	public  List<Customer> getAllCustomerDetails();
 	
-	public  List<Customer> getAllCustomerDetails();
-	
-	public Customer getCustomerDetails(Integer customerId);
+//	public Customer getCustomerDetails(Integer customerId);
 
 	public String addProductToCart(String productName, Integer quantity, String key);
 	

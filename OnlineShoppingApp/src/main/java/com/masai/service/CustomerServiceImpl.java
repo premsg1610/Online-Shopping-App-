@@ -43,79 +43,79 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	
 	//The method to get all customer details
-	@Override
-	public List<Customer> getAllCustomerDetails() {
-		  
-		  List<Customer> cusList= cusDao.findAll();
-		  
-		  if(!cusList.isEmpty()) {
-			  return cusList;
-		  }
-		  
-		  throw new CustomerException("No customer found"); 
-	}
+//	@Override
+//	public List<Customer> getAllCustomerDetails() {
+//		  
+//		  List<Customer> cusList= cusDao.findAll();
+//		  
+//		  if(!cusList.isEmpty()) {
+//			  return cusList;
+//		  }
+//		  
+//		  throw new CustomerException("No customer found"); 
+//	}
 	
 	
 	//The method to get a customer details
-	@Override
-	public Customer getCustomerDetails(Integer customerId) {
-		
-		Optional<Customer> customerOpt = cusDao.findById(customerId);
-		
-		  if(customerOpt.isPresent()) {
-			 
-			 return customerOpt.get();
-		  }
-	
-			throw new CustomerException("Customer does not exist with customer id :"+customerId);
-	}
+//	@Override
+//	public Customer getCustomerDetails(Integer customerId) {
+//		
+//		Optional<Customer> customerOpt = cusDao.findById(customerId);
+//		
+//		  if(customerOpt.isPresent()) {
+//			 
+//			 return customerOpt.get();
+//		  }
+//	
+//			throw new CustomerException("Customer does not exist with customer id :"+customerId);
+//	}
 
 	
 
 	//The method to register the customer
-	@Override
-	public Customer registerCustomer(Customer customer) {
-		
-	Customer customerOpt = cusDao.findByMobile(customer.getMobile());
-
-//	 System.out.println(customerOpt.getMobile());
-	  if(customerOpt == null) {
-		Customer newCustomer = cusDao.save(customer);
-		return newCustomer;
-	  }
-	  
-		throw new CustomerException("Customer already exist.");
-	}
+//	@Override
+//	public Customer registerCustomer(Customer customer) {
+//		
+//	Customer customerOpt = cusDao.findByMobile(customer.getMobile());
+//
+////	 System.out.println(customerOpt.getMobile());
+//	  if(customerOpt == null) {
+//		Customer newCustomer = cusDao.save(customer);
+//		return newCustomer;
+//	  }
+//	  
+//		throw new CustomerException("Customer already exist.");
+//	}
 
 	
 	//The method to delete the customer by Id
-	@Override
-	public Customer deleteCustomerById(Integer customerId) {
-		
-		Optional<Customer> customerOpt = cusDao.findById(customerId);
-		
-		  if(customerOpt.isPresent()) {
-			 cusDao.deleteById(customerId);
-			 return customerOpt.get();
-		  }
-	
-			throw new CustomerException("Customer does not exist with customer id :"+customerId);
-	}
+//	@Override
+//	public Customer deleteCustomerById(Integer customerId) {
+//		
+//		Optional<Customer> customerOpt = cusDao.findById(customerId);
+//		
+//		  if(customerOpt.isPresent()) {
+//			 cusDao.deleteById(customerId);
+//			 return customerOpt.get();
+//		  }
+//	
+//			throw new CustomerException("Customer does not exist with customer id :"+customerId);
+//	}
 
 
 	//The method to update the customer byId
-	@Override
-	public Customer updateCustomerById(Customer customer) {
-		
-	    	Optional<Customer> customerOpt = cusDao.findById(customer.getCustomerId());
-		     
-	    	if(customerOpt.isPresent()) {
-			      
-	    	return cusDao.save(customer);
-		   }
-	  
-	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
-	}
+//	@Override
+//	public Customer updateCustomerById(Customer customer) {
+//		
+//	    	Optional<Customer> customerOpt = cusDao.findById(customer.getCustomerId());
+//		     
+//	    	if(customerOpt.isPresent()) {
+//			      
+//	    	return cusDao.save(customer);
+//		   }
+//	  
+//	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
+//	}
 
 	
 	
@@ -283,6 +283,7 @@ public class CustomerServiceImpl implements CustomerService{
 						return "Product " +  productName + " removed from cart successfully.";
 					}
 				}
+				throw new LoginException("Cart is empty. Add item to cart...");
 			}
 			
 			throw new LoginException("Customer not logged in.");
