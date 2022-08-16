@@ -61,6 +61,52 @@ public class AdminServiceImpl  implements AdminService{
 		System.out.println(admin);
 		return admin;
 	}
+	
+	
+//      +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//	|                             Customers                                               |
+//	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	
+	
+	
+	@Override
+	public List<Customer> getCustomers(String key) {
+		Admin admin = getCurrentLoginUser.getCurrentAdmin(key);	
+		if(admin!=null)
+		{
+			List<Customer> customers = customerDAO.findAll();
+			
+			if(!customers.isEmpty())
+			{
+				return customers;
+			}
+			throw new CustomerException("There is no customer please add customers");
+			
+		}
+		else {
+			throw new AdminException("The admin is not logged in");
+		}
+	}
+
+	@Override
+	public Customer getCustomerByMobile(String mobile, String key) {
+		Admin admin = getCurrentLoginUser.getCurrentAdmin(key);	
+		if(admin!=null)
+		{
+			Customer customer = customerDAO.findByMobile(mobile);
+			
+			if(customer!=null)
+			{
+				return customer;
+			}
+			throw new CustomerException("There is no customer please add customers");
+			
+		}
+		else {
+			throw new AdminException("The admin is not logged in");
+		}
+	}
 
 
 
