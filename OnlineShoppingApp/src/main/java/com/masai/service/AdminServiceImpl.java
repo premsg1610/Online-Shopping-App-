@@ -1,13 +1,17 @@
 package com.masai.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.exceptions.AdminException;
+import com.masai.exceptions.CustomerException;
 import com.masai.model.Admin;
-
+import com.masai.model.Customer;
 import com.masai.repository.AdminDao;
+import com.masai.repository.CustomerDao;
 import com.masai.util.GetCurrentLoginAdminSessionDetailsImpl;
 
 @Service
@@ -15,6 +19,9 @@ public class AdminServiceImpl  implements AdminService{
 	
 	@Autowired
 	private AdminDao adminDAO;
+	
+	@Autowired
+	private CustomerDao customerDAO;
 	
 	@Autowired
 	private GetCurrentLoginAdminSessionDetailsImpl getCurrentLoginUser;
