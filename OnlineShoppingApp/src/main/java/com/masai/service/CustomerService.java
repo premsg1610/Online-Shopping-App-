@@ -18,9 +18,9 @@ public interface CustomerService {
 	
 	public Customer getCustomerDetails(Integer customerId);
 
-	public String addProductToCart(String productName, Integer quantity, String mobile);
+	public String addProductToCart(String productName, Integer quantity, String key);
 	
-	public String removeProductFromCart(String productName, String mobile);
+	public String removeProductFromCart(String productName, String key);
 	
 	public Product updateProductQuantity(String productName);
 
