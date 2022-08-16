@@ -34,7 +34,7 @@ public class AdminServiceImpl  implements AdminService{
 		{
 			return adminDAO.save(admin);
 		}
-		 throw new AdminException("Admin does not exist");
+		 throw new AdminException("Admin already exist");
 		
 	}
 

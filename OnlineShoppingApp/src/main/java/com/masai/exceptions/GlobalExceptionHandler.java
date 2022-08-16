@@ -105,46 +105,7 @@ public class GlobalExceptionHandler {
 		
 		
 		
-	
-	   //-------------------------------------------------------------------------//
-	   //								VALIDATION EXCEPTIONS
-	   //-------------------------------------------------------------------------//
-	
-	
-       //	if user passes wrong api than this exception will be thrown automatically by spring boot
-	
-	   @ExceptionHandler(NoHandlerFoundException.class)
-       public ResponseEntity<MyErrorDetails> wrongApiHandler(NoHandlerFoundException e, WebRequest wr){
-		
-		  System.out.println("Inside the NoHandlerFoundException Handler...");
-		
-		  MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
-		
-		  return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-		
-	   }
-	
-	   
-	   
-	   
-	
-	
-      //	if user don't pass right argument than this exception will be thrown....
-	
-	   @ExceptionHandler(MethodArgumentNotValidException.class)
-	   public ResponseEntity<MyErrorDetails> methodHandler(MethodArgumentNotValidException ie,WebRequest req) {
-		
-			System.out.println("inside MethodArgumentNotValidException Handler...");
-			
-			MyErrorDetails err=new MyErrorDetails(LocalDateTime.now(), ie.getMessage(), req.getDescription(false));
-			
-			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-			
-	
-	    }
-	   
-	   
-	   
+		   
 	   
 	   //-------------------------------------------------------------------------//
 	   //								GLOBAL EXCEPTIONS
@@ -163,6 +124,52 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
 			
     }
+
+	
+	
+	
+
+	   //-------------------------------------------------------------------------//
+	   //								WRONG URI EXCEPTIONS
+	   //-------------------------------------------------------------------------//
+	
+	
+    //	if user passes wrong uri than this exception will be thrown automatically by spring boot
+	
+	   @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<MyErrorDetails> wrongApiHandler(NoHandlerFoundException e, WebRequest wr){
+		
+		  System.out.println("Inside the NoHandlerFoundException Handler...");
+		
+		  MyErrorDetails err = new MyErrorDetails(LocalDateTime.now(), e.getMessage(), wr.getDescription(false));
+		
+		  return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+		
+	   }
+	
+	   
+	   
+	   //-------------------------------------------------------------------------//
+	   //								VALIDATION EXCEPTIONS
+	   //-------------------------------------------------------------------------//
+	
+	
+	
+   //	if user don't pass right argument than this exception will be thrown....
+	
+	   @ExceptionHandler(MethodArgumentNotValidException.class)
+	   public ResponseEntity<MyErrorDetails> methodHandler(MethodArgumentNotValidException ie,WebRequest req) {
+		
+			System.out.println("inside MethodArgumentNotValidException Handler...");
+			
+			MyErrorDetails err=new MyErrorDetails(LocalDateTime.now(), ie.getMessage(), req.getDescription(false));
+			
+			return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+			
+	
+	    }
+	   
+	   
 
 	   
 	   

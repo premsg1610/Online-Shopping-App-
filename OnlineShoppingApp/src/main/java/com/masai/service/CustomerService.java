@@ -26,6 +26,8 @@ public interface CustomerService {
 	
 	public String removeProductFromCart(String productName, String key);
 	
+	public String orderProductFromCart(String key);
+	
 //	public Product updateProductQuantity(String productName);
 
 	

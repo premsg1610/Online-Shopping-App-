@@ -1,6 +1,6 @@
 package com.masai.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,11 +27,11 @@ public class Orders {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer orderId;
-	private LocalDate orderDate;
+	private LocalDateTime orderDateTime;
 	private String orderStatus;
 	
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<CartItem> orderItemList;
+	private List<OrderItems> orderItemsList;
 	
 }
