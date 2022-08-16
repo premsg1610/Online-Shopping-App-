@@ -10,14 +10,16 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class CurrentUserSession {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -28,7 +30,6 @@ public class CurrentUserSession {
 	private String uuid;
 	
 	private LocalDateTime localDateTime;
-	
 	
 	
 	public CurrentUserSession(Integer customerId, String uuid, LocalDateTime localDateTime) {
