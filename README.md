@@ -1,6 +1,7 @@
 
 # [Online-Shopping-App Project]
-![UML Diagram1](https://user-images.githubusercontent.com/101566228/184973762-56881d18-1c0b-4d93-b385-3c1054d92732.jpg)
+![UML Diagram1](https://user-images.githubusercontent.com/101566228/184973861-3a0d1ef2-f9b6-44fd-9ddc-978127509434.jpg)
+
 
 <table>
 <tr>
