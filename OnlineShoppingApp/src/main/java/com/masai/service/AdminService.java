@@ -4,12 +4,16 @@ import com.masai.model.Admin;
 
 public interface AdminService {
 	
-    public Admin createAdmin(Admin admin);
+        public Admin createAdmin(Admin admin);
 	
-    public Admin updateAdmin(Admin admin, String key);
+        public Admin updateAdmin(Admin admin, String key);
 	
 	public Admin deleteAdmin(String key);
 	
 	public Admin getAdminDetails(String key);
+	
+	public List<Customer> getCustomers(String key);
+	
+	public Customer getCustomerByMobile(String mobile, String key);
 
 }
