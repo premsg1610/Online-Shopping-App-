@@ -28,7 +28,7 @@ public class GetCurrentLoginAdminSessionDetailsImpl implements GetCurrentLoginAd
 		Optional<AdminCurrentUserSession> optional = sessionDAO.findByUuid(key);
 		
 		if(!optional.isPresent()) {
-			throw new AdminException("Unauthorized");
+			throw new AdminException("The user is not authorised as Admin");
 		}
 		
 		return optional.get();
@@ -38,7 +38,7 @@ public class GetCurrentLoginAdminSessionDetailsImpl implements GetCurrentLoginAd
 		Optional<AdminCurrentUserSession> optional = sessionDAO.findByUuid(key);
 		
 		if(!optional.isPresent()) {
-			throw new AdminException("Unauthorized");
+			throw new AdminException("The user is not authorised as Admin");
 		}
 		
 		return optional.get().getAdminId();
@@ -48,7 +48,7 @@ public class GetCurrentLoginAdminSessionDetailsImpl implements GetCurrentLoginAd
 		Optional<AdminCurrentUserSession> optional = sessionDAO.findByUuid(key);
 		
 		if(!optional.isPresent()) {
-			throw new AdminException("Unauthorized");
+			throw new AdminException("The user is not authorised as Admin");
 		}
 		
 		Integer adminId = optional.get().getAdminId();
