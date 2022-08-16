@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Customer;
 import com.masai.model.Product;
+import com.masai.repository.ProductDao;
 import com.masai.service.CustomerService;
 import com.masai.service.ProductService;
 
@@ -34,7 +35,6 @@ public class CustomerController {
 	
 	@Autowired
 	private ProductService prodService;
-	
 	
 	
 //	@GetMapping("/")
@@ -107,6 +107,25 @@ public class CustomerController {
 //		   return new ResponseEntity<Product>(product2,HttpStatus.CREATED);
 //		
 //	}
+	
+	
+	@GetMapping("/product/{productName}")
+	public ResponseEntity<Product> getProductByNameHandler(@PathVariable("productName") String productName){
+		
+		Product product = cusService.getProductDetailsByName(productName);
+		
+		return new ResponseEntity<Product>(product,HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/product")
+	public ResponseEntity<List<Product>> getAllProductDetailsHandler(){
+		
+		List<Product> productList = cusService.getAllProductDetails();
+		
+		return new ResponseEntity<List<Product>>(productList,HttpStatus.OK);
+	}
+	
 
 	
 	
