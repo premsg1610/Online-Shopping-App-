@@ -145,19 +145,19 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 //	prem
-	@Override
-	public Product deleteProduct(Integer productId) {
-		
-       Optional<Product> product1 =  prodDao.findById(productId);
-		
-		if(!product1.isPresent())
-		{
-			throw new ProductException("Product Not Found");
-		}
-		prodDao.delete(product1.get());
-		
-	return	product1.get();
-	}
+//	@Override
+//	public Product deleteProduct(Integer productId) {
+//		
+//       Optional<Product> product1 =  prodDao.findById(productId);
+//		
+//		if(!product1.isPresent())
+//		{
+//			throw new ProductException("Product Not Found");
+//		}
+//		prodDao.delete(product1.get());
+//		
+//	return	product1.get();
+//	}
 	
 	
 
