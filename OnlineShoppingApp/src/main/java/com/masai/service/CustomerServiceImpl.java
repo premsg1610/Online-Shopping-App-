@@ -151,9 +151,8 @@ public class CustomerServiceImpl implements CustomerService{
 				if(existingProduct.getQuantity()>0) 
 				{
 					
-				
-				if(existingProduct.getQuantity() >= quantity)
-				{
+			   	 if(existingProduct.getQuantity() >= quantity)
+				 {
 				
 					if(customer.getCart() == null)
 					{
@@ -213,10 +212,9 @@ public class CustomerServiceImpl implements CustomerService{
 					return "Product " + productName + " added to cart."; 
 				}
 				
-				
 			     throw new ProductException("Your quantity: " + quantity + " is more than available quantity: " + existingProduct.getQuantity());
 			     
-			}
+			  }
 			    throw new ProductException("Product out of stock.");
 			}
 			
@@ -254,10 +252,11 @@ public class CustomerServiceImpl implements CustomerService{
 //						cartItemDao.save(c);
 						if(c.getProductQuantity() == 0)
 						{
+							int id = c.getCartItemId();
 							cartItemList.remove(c);
 							System.out.println("yha tak chal gya");
 //							cartDao.deleteByName(c.getProduct().getProductName());
-							cartItemDao.deleteById(c.getCartItemId());
+							cartItemDao.deleteById(id);
 							
 						}
 						
@@ -267,7 +266,13 @@ public class CustomerServiceImpl implements CustomerService{
 						product.setQuantity(product.getQuantity() + 1);
 						System.out.println("yha tak chal gya 3");
 						prodDao.save(product);
-						cartItemDao.save(c);
+						
+						if(c.getProductQuantity() != 0)
+						{
+							cartItemDao.save(c);
+						}
+						
+						
 //						cartDao.save(customer.getCart());
 						
 						if(cartItemList.size() == 0)
