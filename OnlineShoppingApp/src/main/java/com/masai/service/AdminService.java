@@ -1,6 +1,9 @@
 package com.masai.service;
 
+import java.util.List;
+
 import com.masai.model.Admin;
+import com.masai.model.Customer;
 
 public interface AdminService {
 	

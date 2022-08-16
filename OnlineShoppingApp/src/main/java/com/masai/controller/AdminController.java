@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Admin;
+import com.masai.model.Customer;
 import com.masai.model.Product;
 import com.masai.service.AdminServiceImpl;
 import com.masai.service.ProductService;
