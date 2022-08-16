@@ -9,4 +9,5 @@ import com.masai.model.Cart;
 public interface CartDao extends JpaRepository<Cart, Integer> {
 
 //	public void deleteByName(String productName);
+
 }

@@ -3,6 +3,7 @@ package com.masai.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,7 +43,7 @@ public class Customer  {
 	@Pattern(regexp="[a-zA-Z]{3,12}", message = "Last Name must not contains numbers or special characters")
 	private String lastName;
 	
-	
+
 	@NotNull
 	@Pattern(regexp="[6-9]{1}[0-9]{9}", message = "Mobile number must have 10 digits")
 	private String mobile;
