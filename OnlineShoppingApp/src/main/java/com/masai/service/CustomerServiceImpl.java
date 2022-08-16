@@ -38,6 +38,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CartItemDao cartItemDao;
 	
+	@Autowired
+	private GetCurrentLoginUserSessionDetailsImpl getCurrentLoginUser;
+	
 	
 	//The method to get all customer details
 	@Override
@@ -132,9 +135,11 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	
 	@Override
-	public String addProductToCart(String productName, Integer quantity, String mobile) {
+	public String addProductToCart(String productName, Integer quantity, String key) {
 		
-		Customer customer = cusDao.findByMobile(mobile);
+		Customer customer = getCurrentLoginUser.getCurrentCustomer(key);
+		
+//		Customer customer = cusDao.findByMobile(mobile);
 		
 		if(customer != null)
 		{
@@ -142,6 +147,11 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			if(existingProduct != null) 
 			{
+				
+				if(existingProduct.getQuantity()>0) 
+				{
+					
+				
 				if(existingProduct.getQuantity() >= quantity)
 				{
 				
@@ -203,13 +213,18 @@ public class CustomerServiceImpl implements CustomerService{
 					return "Product " + productName + " added to cart."; 
 				}
 				
-				throw new ProductException("Your quantity: " + quantity + " is more than available quantity: " + existingProduct.getQuantity());
+				
+			     throw new ProductException("Your quantity: " + quantity + " is more than available quantity: " + existingProduct.getQuantity());
+			     
+			}
+			    throw new ProductException("Product out of stock.");
 			}
 			
-			throw new ProductException("Product out of stock.");
+			throw new ProductException("Product not found.");
+			
 		}
 
-		throw new CustomerException("Customer not logged in");
+		throw new LoginException("Customer not logged in");
 	}
 
 
@@ -220,9 +235,11 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	
 	@Override
-	public String removeProductFromCart(String productName, String mobile) {
+	public String removeProductFromCart(String productName, String key) {
 		
-			Customer customer = cusDao.findByMobile(mobile);
+		Customer customer = getCurrentLoginUser.getCurrentCustomer(key);
+		
+//			Customer customer = cusDao.findByMobile(mobile);
 					
 			if(customer != null)
 			{
@@ -263,7 +280,7 @@ public class CustomerServiceImpl implements CustomerService{
 				}
 			}
 			
-			throw new CustomerException("Customer not logged in.");
+			throw new LoginException("Customer not logged in.");
 	}
 
 
@@ -275,8 +292,7 @@ public class CustomerServiceImpl implements CustomerService{
 	//Harshit//
 	
 	
-	@Autowired
-	private GetCurrentLoginUserSessionDetailsImpl getCurrentLoginUser;
+
 	
 	
 	@Override

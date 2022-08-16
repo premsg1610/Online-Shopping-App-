@@ -110,13 +110,13 @@ public class CustomerController {
 
 	
 	
-	@PostMapping("/cart/{productName}/{quantity}/{mobile}")
+	@PostMapping("/cart/{productName}/{quantity}/{key}")
 	public ResponseEntity<String> addProductToCartHandler(@PathVariable("productName") String productName,
 															@PathVariable("quantity") Integer quantity,
-												            @PathVariable("mobile") String mobile){
+												            @PathVariable("key") String key){
 		
 		
-		 String message =  cusService.addProductToCart(productName, quantity, mobile);
+		 String message =  cusService.addProductToCart(productName, quantity, key);
 		
 		   return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
 		
@@ -179,11 +179,11 @@ public class CustomerController {
 	
 	
 	
-	@PostMapping("/removeCart/{productName}/{mobile}")
+	@PostMapping("/removeCart/{productName}/{key}")
 	public ResponseEntity<String> removeProductFromCart(@PathVariable("productName") String productName,
-			                                            @PathVariable("mobile") String mobile){
+			                                            @PathVariable("key") String key){
 								
-		String message =  cusService.removeProductFromCart(productName, mobile);
+		String message =  cusService.removeProductFromCart(productName, key);
 		
 		 return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
 		
