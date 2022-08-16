@@ -1,4 +1,4 @@
-package com.masai.CustomerLogin;
+package com.masai.util;
 
 import com.masai.model.CurrentUserSession;
 import com.masai.model.Customer;

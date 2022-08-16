@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.CustomerLogin.GetCurrentLoginUserSessionDetailsImpl;
 import com.masai.exceptions.LoginException;
 import com.masai.model.CurrentUserSession;
 import com.masai.model.Customer;
 import com.masai.model.CustomerDTO;
 import com.masai.repository.CustomerDao;
 import com.masai.repository.CustomerLoginSessionDAO;
+import com.masai.util.GetCurrentLoginUserSessionDetailsImpl;
 
 import net.bytebuddy.utility.RandomString;
 

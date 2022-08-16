@@ -2,25 +2,20 @@ package com.masai.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.masai.CustomerLogin.GetCurrentLoginUserSessionDetailsImpl;
-import com.masai.exceptions.CustomerException;
-
 import com.masai.exceptions.LoginException;
-
 import com.masai.exceptions.ProductException;
 import com.masai.model.Cart;
 import com.masai.model.CartItem;
 import com.masai.model.Customer;
 import com.masai.model.Product;
-import com.masai.repository.CartDao;
 import com.masai.repository.CartItemDao;
 import com.masai.repository.CustomerDao;
 import com.masai.repository.ProductDao;
+import com.masai.util.GetCurrentLoginUserSessionDetailsImpl;
 
 
 @Service
@@ -29,9 +24,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerDao cusDao;
 	
-	@Autowired
-	private CartDao cartDao;
-	
+//	@Autowired
+//	private CartDao cartDao;
+//	
 	@Autowired
 	private ProductDao prodDao;
 	
@@ -121,15 +116,50 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	
 	
+//
+//	@Override
+//	public Product updateProductQuantity(String productName) {
+//		
+//		Product existingProduct = prodDao.findByProductName(productName);
+//		existingProduct.setQuantity(existingProduct.getQuantity()-1);
+//		return existingProduct;
+//	
+//	}
+	
+	
+	
+	@Override
+	public Product getProductDetailsByName(String productName) {
+		
+			 Product product =  prodDao.findByProductName(productName);
+			 if(product == null)
+			 {
+				 throw new ProductException("Product not found with this name "+ productName);
+			 }
+			 return product ;
+			 
+	}
+		 
+
+
+
+
 
 	@Override
-	public Product updateProductQuantity(String productName) {
+	public List<Product> getAllProductDetails() {
 		
-		Product existingProduct = prodDao.findByProductName(productName);
-		existingProduct.setQuantity(existingProduct.getQuantity()-1);
-		return existingProduct;
+			List<Product> productList = prodDao.findAll();
+
+			if (productList.isEmpty()) {
+				throw new ProductException("No product exist in this shopping site.");
+			}
+			return productList;
+		} 
 	
-	}
+
+
+	
+	
 	
 	
 	
@@ -356,6 +386,10 @@ public class CustomerServiceImpl implements CustomerService{
 		System.out.println(customer);
 		return customer;
 	}
+
+
+
+
 
 
 		

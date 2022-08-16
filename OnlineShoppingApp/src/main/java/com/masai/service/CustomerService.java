@@ -17,12 +17,16 @@ public interface CustomerService {
 //	public  List<Customer> getAllCustomerDetails();
 	
 //	public Customer getCustomerDetails(Integer customerId);
+	
+	public Product getProductDetailsByName(String productName);
+	
+	public List<Product> getAllProductDetails();
 
 	public String addProductToCart(String productName, Integer quantity, String key);
 	
 	public String removeProductFromCart(String productName, String key);
 	
-	public Product updateProductQuantity(String productName);
+//	public Product updateProductQuantity(String productName);
 
 	
 	
@@ -42,6 +46,8 @@ public interface CustomerService {
 	public Customer deleteCustomer(String key);
 	
 	public Customer getCustomerDetails(String key);
+
+	
 	
 	
 	
