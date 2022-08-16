@@ -142,6 +142,14 @@ public class CustomerController {
 	}
 	
 	
+	@PostMapping("/order/{key}")
+	public ResponseEntity<String> orderProductsHandler(@PathVariable("key") String key){
+		
+		String message = cusService.orderProductFromCart(key);
+		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
+	}
+	
+	
 	
 	
 //	@PutMapping("/product/{productName}")

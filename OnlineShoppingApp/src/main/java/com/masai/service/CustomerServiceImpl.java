@@ -1,5 +1,6 @@
 package com.masai.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import com.masai.exceptions.ProductException;
 import com.masai.model.Cart;
 import com.masai.model.CartItem;
 import com.masai.model.Customer;
+import com.masai.model.OrderItems;
+import com.masai.model.Orders;
 import com.masai.model.Product;
 import com.masai.repository.CartItemDao;
 import com.masai.repository.CustomerDao;
@@ -198,7 +201,7 @@ public class CustomerServiceImpl implements CustomerService{
 						cart.getCartItemList().add(newCartItem);
 						
 						customer.setCart(cart);
-						System.out.println("end of new cart method");
+						
 						prodDao.save(existingProduct);
 						cusDao.save(customer);
 						
@@ -278,23 +281,22 @@ public class CustomerServiceImpl implements CustomerService{
 					if(c.getProduct().getProductName().equals(productName))
 					{
 						c.setProductQuantity(c.getProductQuantity() - 1);
-						System.out.println(c.getProductQuantity() + " after removing from cart");
+						
 //						cartItemDao.save(c);
 						if(c.getProductQuantity() == 0)
 						{
 							int id = c.getCartItemId();
 							cartItemList.remove(c);
-							System.out.println("yha tak chal gya");
+			
 //							cartDao.deleteByName(c.getProduct().getProductName());
 							cartItemDao.deleteById(id);
 							
 						}
 						
-						System.out.println("yha tak chal gya 2");
 						Product product = prodDao.findByProductName(productName);
 						
 						product.setQuantity(product.getQuantity() + 1);
-						System.out.println("yha tak chal gya 3");
+				
 						prodDao.save(product);
 						
 						if(c.getProductQuantity() != 0)
@@ -318,6 +320,66 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			throw new LoginException("Customer not logged in.");
 	}
+
+	
+	
+	
+	
+
+	@Override
+	public String orderProductFromCart(String key) {
+
+		Customer customer = getCurrentLoginUser.getCurrentCustomer(key);
+		
+		if(customer != null)
+		{
+			List<CartItem> cartItemList = customer.getCart().getCartItemList();
+			
+//			System.out.println(cartItemList.size());
+			
+			Orders order = new Orders();
+			
+			order.setOrderDateTime(LocalDateTime.now());
+			order.setOrderStatus("Order Placed Successfully.");
+			order.setOrderItemsList(new ArrayList());
+			
+			for(CartItem c: cartItemList)
+			{
+				OrderItems orderItem = new OrderItems();
+				orderItem.setProduct(c.getProduct());
+				orderItem.setProductQuantity(c.getProductQuantity());
+				order.getOrderItemsList().add(orderItem);
+				
+				int id = c.getCartItemId();
+				cartItemList.remove(c);
+				
+				cartItemDao.deleteById(id);
+				
+				System.out.println("one product ordered");
+			}
+			
+		
+			
+			if(customer.getOrderList() == null)
+			{
+				customer.setOrderList(new ArrayList<>());
+				
+				customer.getOrderList().add(order);
+			}
+			else {
+				customer.getOrderList().add(order);
+			}
+			
+			cusDao.save(customer);
+			
+			return order.getOrderStatus();
+
+		}
+		
+		throw new LoginException("Customer not logged in");
+
+	}
+
 
 
 
@@ -386,6 +448,10 @@ public class CustomerServiceImpl implements CustomerService{
 		System.out.println(customer);
 		return customer;
 	}
+
+
+
+
 
 
 
