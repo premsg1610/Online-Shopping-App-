@@ -4,6 +4,8 @@ package com.masai.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +24,7 @@ import com.masai.service.AdminServiceImpl;
 import com.masai.service.ProductService;
 
 @RestController
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
@@ -44,7 +48,7 @@ public class AdminController {
 */
 	
 	@PostMapping("/addAdmin")
-	public Admin registerCustomer(@RequestBody Admin admin) {
+	public Admin registerAdmin(@Valid @RequestBody Admin admin) {
 
 		return aService.createAdmin(admin);
 
@@ -54,7 +58,7 @@ public class AdminController {
 
 	// To update existing user details by passing its login key
 	@PutMapping(value = "/updateAdmin")
-	public Admin updateCustomer(@RequestBody Admin admin, @RequestParam(required = false) String key) {
+	public Admin updateAdmin(@Valid @RequestBody Admin admin, @RequestParam(required = false) String key) {
 		return aService.updateAdmin(admin, key);
 	}
 
@@ -62,7 +66,7 @@ public class AdminController {
 	
 	// To delete existing user details by passing its login key
 	@DeleteMapping(value = "/deleteAdmin")
-	public Admin deleteCustomer(@RequestParam(required = false) String key) {
+	public Admin deleteAdmin(@RequestParam(required = false) String key) {
 		return aService.deleteAdmin(key);
 	}
 
@@ -70,7 +74,7 @@ public class AdminController {
 	
 	// To get details of current user by passing its login key
 	@GetMapping(value = "/getAdmin")
-	public Admin getCustomerDetails(@RequestParam(required = false) String key) {
+	public Admin getAdminDetails(@RequestParam(required = false) String key) {
 		return aService.getAdminDetails(key);
 	}
 	
@@ -90,7 +94,7 @@ public class AdminController {
 	
 	
 	@PostMapping("/addProduct")
-	public Product addProduct(@RequestBody Product product,@RequestParam String key)
+	public Product addProduct(@Valid @RequestBody Product product,@RequestParam String key)
 	{
 		return pService.addProduct(product,key);
 	}
@@ -108,7 +112,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/updateProduct")
-	public Product updateProduct(@RequestBody Product product,@RequestParam String key)
+	public Product updateProduct(@Valid @RequestBody Product product,@RequestParam String key)
 	{
 		return pService.updateProduct(product,key);
 	}
