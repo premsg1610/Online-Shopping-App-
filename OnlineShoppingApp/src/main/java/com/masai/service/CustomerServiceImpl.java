@@ -335,45 +335,67 @@ public class CustomerServiceImpl implements CustomerService{
 		{
 			List<CartItem> cartItemList = customer.getCart().getCartItemList();
 			
-//			System.out.println(cartItemList.size());
-			
-			Orders order = new Orders();
-			
-			order.setOrderDateTime(LocalDateTime.now());
-			order.setOrderStatus("Order Placed Successfully.");
-			order.setOrderItemsList(new ArrayList());
-			
-			for(CartItem c: cartItemList)
+			if(cartItemList.size() > 0)
 			{
-				OrderItems orderItem = new OrderItems();
-				orderItem.setProduct(c.getProduct());
-				orderItem.setProductQuantity(c.getProductQuantity());
-				order.getOrderItemsList().add(orderItem);
 				
-				int id = c.getCartItemId();
-				cartItemList.remove(c);
+	//			System.out.println(cartItemList.size());
 				
-				cartItemDao.deleteById(id);
+				Orders order = new Orders();
 				
-				System.out.println("one product ordered");
+				order.setOrderDateTime(LocalDateTime.now());
+				order.setOrderStatus("Order Placed Successfully.");
+				order.setOrderItemsList(new ArrayList());
+				
+				
+				List<CartItem> newList = new ArrayList<>();
+				
+				for(CartItem c: cartItemList)
+				{
+					OrderItems orderItem = new OrderItems();
+					orderItem.setProduct(c.getProduct());
+					orderItem.setProductQuantity(c.getProductQuantity());
+					order.getOrderItemsList().add(orderItem);
+					
+					newList.add(c);
+					
+	//				int id = c.getCartItemId();
+	//				cartItemList.remove(c);
+	//				
+	//				cartItemDao.deleteById(id);
+	//				
+	//				System.out.println("one product ordered");
+				}
+				
+			
+			
+				for(CartItem c: newList)
+				{
+					int id = c.getCartItemId();
+					cartItemList.remove(c);
+					
+					cartItemDao.deleteById(id);
+					
+					System.out.println("one product ordered");
+				}
+				
+			
+				
+				if(customer.getOrderList() == null)
+				{
+					customer.setOrderList(new ArrayList<>());
+					
+					customer.getOrderList().add(order);
+				}
+				else {
+					customer.getOrderList().add(order);
+				}
+				
+				cusDao.save(customer);
+				
+				return order.getOrderStatus();
+	
 			}
-			
-		
-			
-			if(customer.getOrderList() == null)
-			{
-				customer.setOrderList(new ArrayList<>());
-				
-				customer.getOrderList().add(order);
-			}
-			else {
-				customer.getOrderList().add(order);
-			}
-			
-			cusDao.save(customer);
-			
-			return order.getOrderStatus();
-
+			throw new ProductException("No product in cart. Add product to cart first...");
 		}
 		
 		throw new LoginException("Customer not logged in");
