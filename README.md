@@ -21,6 +21,7 @@ We were a team🔭 of 6 member from the Masai Web-17 batch. We worked on creatin
   - **[Harshit Tripathi](https://github.com/Harshitmax2022)**
 
 
+## ER Diagram
 ![UML Diagram1](https://user-images.githubusercontent.com/101566228/184973861-3a0d1ef2-f9b6-44fd-9ddc-978127509434.jpg)
 
 
