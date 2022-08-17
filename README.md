@@ -34,6 +34,6 @@ We were a team🔭 of 6 member from the Masai Web-17 batch. We worked on creatin
 - MySQL
 - Postman
 - Swagger UI
-- ![Java]([https://img.shields.io/badge/-HTML5-000000?style=for-the-badge&logo=HTML5](https://www.logo.wine/a/logo/Java_(programming_language)/Java_(programming_language)-Logo.wine.svg))
+- ![Java]([https://www.logo.wine/a/logo/Java_(programming_language)/Java_(programming_language)-Logo.wine.svg])
 
 
