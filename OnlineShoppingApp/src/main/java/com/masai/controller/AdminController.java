@@ -140,7 +140,7 @@ public class AdminController {
 		return aService.getCustomers(key);
 	}
 	
-	@GetMapping("/getCustomer")
+	@GetMapping("/getCustomer/{mobile}")
 	public Customer getCustomer(@PathVariable String mobile,@RequestParam String key)
 	{
 		return aService.getCustomerByMobile(mobile, key);
