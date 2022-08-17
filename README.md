@@ -2,7 +2,11 @@
 # [Online-Shopping-App Project]
 
 Hi World !🌏
-We were a team🔭 of 6 member from the Masai Web-17 batch. We worked on creating REST API and writing business logic for an E-commerce application. Our project performs fundamental operations of an e-commerce website, where our customer's data is validated, mapped, processed with business logic & persisted in the database.
+We were a team of 6 member from the Masai Web-17 batch. We worked on creating REST API and writing business logic for an E-commerce application.
+
+
+# Details : 🔭
+Our project performs fundamental operations of an e-commerce website, where our customer's data is validated, mapped, processed with business logic & persisted in the database.
 
  🚀 The Swagger link to check rest Api-> http://localhost:8088/swagger-ui/
  
@@ -10,15 +14,20 @@ We were a team🔭 of 6 member from the Masai Web-17 batch. We worked on creatin
 # Our Team Members 👨‍💻
   - **[Anshul Kumar Yadav ](https://github.com/AnshulKumarYadav)**
   
+  - **[Harshit Tripathi](https://github.com/Harshitmax2022)**
+  
+  - **[Hitendra Verma](https://github.com/HITTPATEL)**
+  
+  - **[Prem Sagar Gupta](https://github.com/premsg1610)**
+  
   - **[Rupesh Thakur](https://github.com/Rupesh8844)**
    
-  - **[Hitendra Verma](https://github.com/HITTPATEL)**
-
   - **[Vijay Prakash](https://github.com/Vijay_Prakash146246)**
+
+  
  
-  - **[Prem Sagar Gupta](https://github.com/premsg1610)**
    
-  - **[Harshit Tripathi](https://github.com/Harshitmax2022)**
+
 
 
 ## ER Diagram
