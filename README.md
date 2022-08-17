@@ -26,11 +26,14 @@ We were a team🔭 of 6 member from the Masai Web-17 batch. We worked on creatin
 
 
 ## Tech Stack
-- JAVA
+- Java
 - Spring
 - Spring Boot
-- Spring data JPA
+- Spring Data JPA
 - Hibernate
+- MySQL
+- Postman
+- Swagger UI
 
 
 
