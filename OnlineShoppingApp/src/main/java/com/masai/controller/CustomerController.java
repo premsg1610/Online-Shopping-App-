@@ -36,77 +36,7 @@ public class CustomerController {
 	@Autowired
 	private ProductService prodService;
 	
-	
-//	@GetMapping("/")
-//	public ResponseEntity<List<Customer>> getAllCustomerDetailsHandler(){
-//		
-//		List<Customer> customerList = cusService.getAllCustomerDetails();
-//		
-//		return new ResponseEntity<>(customerList,HttpStatus.OK);
-//	}
 
-     
-//	@GetMapping("/{customerId}/")
-//	public ResponseEntity<Customer> getCustomerDetailsById(@PathVariable("customerId") Integer customerId){
-//		   Customer existingCustomer = cusService.getCustomerDetails(customerId);
-//		   return new ResponseEntity<>(existingCustomer,HttpStatus.OK);
-//	}
-
-
-	
-//	@PostMapping("/")
-//     public ResponseEntity<Customer> registerCustomerHandler(@Valid @RequestBody Customer customer){
-//   
-//	   Customer newCustomer = cusService.registerCustomer(customer);
-//
-//	  return new ResponseEntity<Customer>(newCustomer,HttpStatus.CREATED);
-//		
-//     }
-	
-	
-	
-	
-//	@DeleteMapping("/{customerId}/")
-//    public ResponseEntity<Customer> deleteCustomerHandler(@PathVariable ("customerId") Integer customerId){
-//   	 
-//	   Customer deletedCustomer = cusService.deleteCustomerById(customerId);
-//	   
-//	  return new ResponseEntity<>(deletedCustomer,HttpStatus.OK);
-//		
-//    }
-	
-	
-	
-	
-//	@PutMapping("/")
-//    public ResponseEntity<Customer> updateCustomerHandler(@Valid @RequestBody Customer customer){
-//   	 
-//	   Customer updatedCustomer = cusService.updateCustomerById(customer);
-//	   
-//	  return new ResponseEntity<>(updatedCustomer,HttpStatus.ACCEPTED);
-//		
-//    }
-	
-	
-	
-//	@PostMapping("/product")
-//    public ResponseEntity<Product> addProductHandler(@Valid @RequestBody Product product){
-//  
-//	   Product newProduct = prodService.addProduct(product);
-//
-//	  return new ResponseEntity<Product>(newProduct,HttpStatus.CREATED);
-//		
-//    }
-	
-
-//	@PostMapping("/cart/{mobile}")
-//	public ResponseEntity<Product> addProductToCartHandler(@Valid @RequestBody Product product ,@PathVariable("mobile") String mobile){
-//		
-//		 Product product2=  cusService.addProductToCart(product, mobile);
-//		
-//		   return new ResponseEntity<Product>(product2,HttpStatus.CREATED);
-//		
-//	}
 	
 	
 	@GetMapping("/product/{productName}")
@@ -142,6 +72,8 @@ public class CustomerController {
 	}
 	
 	
+	
+	
 	@PostMapping("/order/{key}")
 	public ResponseEntity<String> orderProductsHandler(@PathVariable("key") String key){
 		
@@ -149,58 +81,6 @@ public class CustomerController {
 		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
 	}
 	
-	
-	
-	
-//	@PutMapping("/product/{productName}")
-//    public ResponseEntity<Product> updateProductHandler(@PathVariable("productName") String productName){
-//  
-//	   Product updatedProduct = cusService.updateProductQuantity(productName);
-//
-//	  return new ResponseEntity<Product>(updatedProduct,HttpStatus.ACCEPTED);
-//		
-//    }
-//	
-//	@DeleteMapping("/product/{productId}")
-//	public  ResponseEntity<Product> deleteProductHandler(@PathVariable("productId") Integer productId){
-//		  Product deletedProduct =prodService.deleteProduct(productId);
-//		  return new ResponseEntity<Product>(deletedProduct,HttpStatus.OK);
-//		  
-//	}
-//	
-//	
-//	
-//	
-//	
-//	@PostMapping("/removeCart/{productName}/{mobile}")
-//	public ResponseEntity<String> removeProductFromCart(@PathVariable("productName") String productName,
-//			                                            @PathVariable("mobile") String mobile){
-//								
-//		String message =  cusService.removeProductFromCart(productName, mobile);
-//		
-//		 return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
-//		
-//=======
-//>>>>>>> master
-//		
-//	}
-	
-	
-//	@PutMapping("/product/{productName}")
-//    public ResponseEntity<Product> updateProductHandler(@PathVariable("productName") String productName){
-//  
-//	   Product updatedProduct = cusService.updateProductQuantity(productName);
-//
-//	  return new ResponseEntity<Product>(updatedProduct,HttpStatus.ACCEPTED);
-//		
-//    }
-	
-//	@DeleteMapping("/product/{productId}")
-//	public  ResponseEntity<Product> deleteProductHandler(@PathVariable("productId") Integer productId){
-//		  Product deletedProduct =prodService.deleteProduct(productId);
-//		  return new ResponseEntity<Product>(deletedProduct,HttpStatus.OK);
-//		  
-//	}
 	
 	
 	

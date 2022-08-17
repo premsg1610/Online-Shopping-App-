@@ -39,95 +39,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private GetCurrentLoginUserSessionDetailsImpl getCurrentLoginUser;
 	
-	
-	//The method to get all customer details
-//	@Override
-//	public List<Customer> getAllCustomerDetails() {
-//		  
-//		  List<Customer> cusList= cusDao.findAll();
-//		  
-//		  if(!cusList.isEmpty()) {
-//			  return cusList;
-//		  }
-//		  
-//		  throw new CustomerException("No customer found"); 
-//	}
-	
-	
-	//The method to get a customer details
-//	@Override
-//	public Customer getCustomerDetails(Integer customerId) {
-//		
-//		Optional<Customer> customerOpt = cusDao.findById(customerId);
-//		
-//		  if(customerOpt.isPresent()) {
-//			 
-//			 return customerOpt.get();
-//		  }
-//	
-//			throw new CustomerException("Customer does not exist with customer id :"+customerId);
-//	}
 
-	
-
-	//The method to register the customer
-//	@Override
-//	public Customer registerCustomer(Customer customer) {
-//		
-//	Customer customerOpt = cusDao.findByMobile(customer.getMobile());
-//
-////	 System.out.println(customerOpt.getMobile());
-//	  if(customerOpt == null) {
-//		Customer newCustomer = cusDao.save(customer);
-//		return newCustomer;
-//	  }
-//	  
-//		throw new CustomerException("Customer already exist.");
-//	}
-
-	
-	//The method to delete the customer by Id
-//	@Override
-//	public Customer deleteCustomerById(Integer customerId) {
-//		
-//		Optional<Customer> customerOpt = cusDao.findById(customerId);
-//		
-//		  if(customerOpt.isPresent()) {
-//			 cusDao.deleteById(customerId);
-//			 return customerOpt.get();
-//		  }
-//	
-//			throw new CustomerException("Customer does not exist with customer id :"+customerId);
-//	}
-
-
-	//The method to update the customer byId
-//	@Override
-//	public Customer updateCustomerById(Customer customer) {
-//		
-//	    	Optional<Customer> customerOpt = cusDao.findById(customer.getCustomerId());
-//		     
-//	    	if(customerOpt.isPresent()) {
-//			      
-//	    	return cusDao.save(customer);
-//		   }
-//	  
-//	    	throw new CustomerException("Customer does not exist with customer id :"+ customer.getCustomerId());
-//	}
-
-	
-	
-	
-	
-//
-//	@Override
-//	public Product updateProductQuantity(String productName) {
-//		
-//		Product existingProduct = prodDao.findByProductName(productName);
-//		existingProduct.setQuantity(existingProduct.getQuantity()-1);
-//		return existingProduct;
-//	
-//	}
 	
 	
 	
@@ -147,7 +59,6 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 
-
 	@Override
 	public List<Product> getAllProductDetails() {
 		
@@ -161,9 +72,6 @@ public class CustomerServiceImpl implements CustomerService{
 	
 
 
-	
-	
-	
 	
 	
 	
@@ -358,12 +266,6 @@ public class CustomerServiceImpl implements CustomerService{
 					
 					newList.add(c);
 					
-	//				int id = c.getCartItemId();
-	//				cartItemList.remove(c);
-	//				
-	//				cartItemDao.deleteById(id);
-	//				
-	//				System.out.println("one product ordered");
 				}
 				
 			
@@ -405,13 +307,6 @@ public class CustomerServiceImpl implements CustomerService{
 
 
 
-
-
-
-	
-	//Harshit//
-	
-	
 
 	
 	
@@ -456,6 +351,8 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 
+	
+	
 	@Override
 	public Customer deleteCustomer(String key) {
 		Customer customer = getCurrentLoginUser.getCurrentCustomer(key);		
