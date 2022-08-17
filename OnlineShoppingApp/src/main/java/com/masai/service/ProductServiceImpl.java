@@ -76,17 +76,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 		 
 		
-		
-//        Optional<Product> product1 =  prodDao.findById(product.getProductId());
-//		
-//        if(product1.isPresent())
-//        {
-//        	return prodDao.save(product);
-//        }
-//        else {
-//        	throw new ProductException("Product not found by id");
-//        }
-//		
+
 	}
 
 	@Override
@@ -144,24 +134,6 @@ public class ProductServiceImpl implements ProductService {
 		 }
 	}
 
-//	prem
-//	@Override
-//	public Product deleteProduct(Integer productId) {
-//		
-//       Optional<Product> product1 =  prodDao.findById(productId);
-//		
-//		if(!product1.isPresent())
-//		{
-//			throw new ProductException("Product Not Found");
-//		}
-//		prodDao.delete(product1.get());
-//		
-//	return	product1.get();
-//	}
-	
-	
-
-	
 
 		
 }
