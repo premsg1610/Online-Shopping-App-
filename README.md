@@ -44,4 +44,6 @@ Our project performs fundamental operations of an e-commerce website, where our 
 - Postman
 - Swagger UI
 
+[SwaggerAPI_OnlineShoppingAppDocumentation.pdf](https://github.com/premsg1610/Online-Shopping-App-/files/9384539/SwaggerAPI_OnlineShoppingAppDocumentation.pdf)
+
 
