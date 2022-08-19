@@ -1,5 +1,5 @@
 
-# [Online-Shopping-App Project]
+# Online-Shopping-App Project
 
 Hi World !🌏
 We were a team of 6 member from the Masai Web-17 batch. We worked on creating REST API and writing business logic for an E-commerce application.
