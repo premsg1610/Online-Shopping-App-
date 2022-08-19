@@ -46,4 +46,5 @@ Our project performs fundamental operations of an e-commerce website, where our 
 
 [SwaggerAPI_OnlineShoppingAppDocumentation.pdf](https://github.com/premsg1610/Online-Shopping-App-/files/9384539/SwaggerAPI_OnlineShoppingAppDocumentation.pdf)
 
+[Online Shopping PPT.pptx](https://github.com/premsg1610/Online-Shopping-App-/files/9384553/Online.Shopping.PPT.pptx)
 
