@@ -54,7 +54,7 @@ public class GetCurrentLoginUserSessionDetailsImpl implements GetCurrentLoginUse
 		
 		Integer customerId = optional.get().getCustomerId();
 		
-		return  customerDAO.getById(customerId);
+		return  customerDAO.findById(customerId).get();
 	}
 	
 	

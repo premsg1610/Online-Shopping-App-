@@ -1,7 +1,5 @@
 package com.masai.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.model.Customer;
-import com.masai.model.Product;
-import com.masai.repository.ProductDao;
 import com.masai.service.CustomerService;
 import com.masai.service.ProductService;
 
@@ -37,32 +33,13 @@ public class CustomerController {
 	private ProductService prodService;
 	
 
-	
-	
-	@GetMapping("/product/{productName}")
-	public ResponseEntity<Product> getProductByNameHandler(@PathVariable("productName") String productName){
-		
-		Product product = cusService.getProductDetailsByName(productName);
-		
-		return new ResponseEntity<Product>(product,HttpStatus.OK);
-	}
-	
-	
-	@GetMapping("/product")
-	public ResponseEntity<List<Product>> getAllProductDetailsHandler(){
-		
-		List<Product> productList = cusService.getAllProductDetails();
-		
-		return new ResponseEntity<List<Product>>(productList,HttpStatus.OK);
-	}
-	
 
 	
 	
-	@PostMapping("/cart/{productName}/{quantity}/{key}")
+	@PostMapping("/cart/{productName}/{quantity}/")
 	public ResponseEntity<String> addProductToCartHandler(@PathVariable("productName") String productName,
 															@PathVariable("quantity") Integer quantity,
-												            @PathVariable("key") String key){
+												            @RequestParam(required = false) String key){
 		
 		
 		 String message =  cusService.addProductToCart(productName, quantity, key);
@@ -74,8 +51,8 @@ public class CustomerController {
 	
 	
 	
-	@PostMapping("/order/{key}")
-	public ResponseEntity<String> orderProductsHandler(@PathVariable("key") String key){
+	@PostMapping("/order/")
+	public ResponseEntity<String> orderProductsHandler(@RequestParam(required = false) String key){
 		
 		String message = cusService.orderProductFromCart(key);
 		return new ResponseEntity<String>(message,HttpStatus.ACCEPTED);
@@ -86,9 +63,9 @@ public class CustomerController {
 	
 	
 	
-	@PostMapping("/removeCart/{productName}/{key}")
-	public ResponseEntity<String> removeProductFromCart(@PathVariable("productName") String productName,
-			                                            @PathVariable("key") String key){
+	@PostMapping("/cart/{productName}/")
+	public ResponseEntity<String> removeProductFromCartHandler(@PathVariable("productName") String productName,
+			                                                   @RequestParam(required = false) String key){
 								
 		String message =  cusService.removeProductFromCart(productName, key);
 		
@@ -100,29 +77,19 @@ public class CustomerController {
 	
 	
 	
-//	           =================== Harshit ======================
-	
-	
-	
-//	@GetMapping("/Phelp")
-//	public String getTest() {
-//		return "Jay Shri Krishna";
-//	}
-//	
-	
-	@PostMapping("/resigsterCustomerByDetails")
-	public Customer registerCustomer(@Valid @RequestBody Customer customer) {
+	@PostMapping("/")
+	public Customer registerCustomerHandler(@Valid @RequestBody Customer customer) {
 		
 		
-	return 	cusService.createCustomer(customer);
+	return 	cusService.registerCustomer(customer);
 		
 	}	
 	
 	
 	
 	// To update existing user details by passing its login key
-		@PutMapping(value = "/updateCustomerByKey")
-		public Customer updateCustomer( @RequestBody Customer customer, @RequestParam(required = false) String key) {
+		@PutMapping("/")
+		public Customer updateCustomerHandler(@Valid @RequestBody Customer customer, @RequestParam(required = false) String key) {
 			return cusService.updateCustomer(customer, key);
 		}
 		
@@ -131,15 +98,15 @@ public class CustomerController {
 	
 	
 		// To delete existing user details by passing its login key
-		@DeleteMapping(value = "/deleteCustomerByKey")
-		public Customer deleteCustomer(@RequestParam(required = false) String key) {
+		@DeleteMapping(value = "/")
+		public Customer deleteCustomerHandler(@RequestParam(required = false) String key) {
 			return cusService.deleteCustomer(key);
 		}
 		
 		
 		// To get details of current user by passing its login key
-		@GetMapping(value = "/getCustomerByKey")
-		public Customer getCustomerDetails(@RequestParam(required = false) String key) {
+		@GetMapping(value = "/")
+		public Customer getCustomerDetailsHandler(@RequestParam(required = false) String key) {
 			return cusService.getCustomerDetails(key);
 		}
 	

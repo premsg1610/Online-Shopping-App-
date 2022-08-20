@@ -53,7 +53,7 @@ public class GetCurrentLoginAdminSessionDetailsImpl implements GetCurrentLoginAd
 		
 		Integer adminId = optional.get().getAdminId();
 		
-		return  adminDAO.getById(adminId);
+		return  adminDAO.findById(adminId).get();
 	}
 
 }
