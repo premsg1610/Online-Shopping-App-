@@ -27,7 +27,7 @@ public class AdminServiceImpl  implements AdminService{
 	private GetCurrentLoginAdminSessionDetailsImpl getCurrentLoginUser;
 
 	@Override
-	public Admin createAdmin(Admin admin) {
+	public Admin registerAdmin(Admin admin) {
 		Admin oldAdmin = adminDAO.findByMobile(admin.getMobile());
 		
 		if(oldAdmin==null)
@@ -44,10 +44,7 @@ public class AdminServiceImpl  implements AdminService{
 		
 		if(customer2.getMobile().equals(admin.getMobile()))
 		{
-			customer2.setFirstName(admin.getFirstName());
-			customer2.setLastName(admin.getLastName());
-			customer2.setEmail(admin.getEmail());
-			customer2.setPassword(admin.getPassword());
+			adminDAO.save(admin);
 			return admin;
 		}
 		else{
@@ -88,7 +85,7 @@ public class AdminServiceImpl  implements AdminService{
 			{
 				return customers;
 			}
-			throw new CustomerException("There is no customer please add customers");
+			throw new CustomerException("No customer exists.");
 			
 		}
 		else {
@@ -107,7 +104,7 @@ public class AdminServiceImpl  implements AdminService{
 			{
 				return customer;
 			}
-			throw new CustomerException("There is no customer please add customers");
+			throw new CustomerException("No customer exists with mobile number: " + mobile);
 			
 		}
 		else {

@@ -32,49 +32,34 @@ public class AdminController {
 
 	
 	
-	@GetMapping("/help")
-	public String getTest() {
-		return "Hello, How can I help you";
-	}
+	@PostMapping("/")
+	public Admin registerAdminHandler(@Valid @RequestBody Admin admin) {
 
-	
-	
-
-	/*
-	@GetMapping("/getAdmin/{mobile}")
-	public Admin getAdminDetailsHandler(@PathVariable("mobile") String mobile)
-	{
-		return adminServiceImpl.getAdminDetails(mobile);
-*/
-	
-	@PostMapping("/addAdmin")
-	public Admin registerAdmin(@Valid @RequestBody Admin admin) {
-
-		return aService.createAdmin(admin);
+		return aService.registerAdmin(admin);
 
 
 	}
 	
 
 	// To update existing user details by passing its login key
-	@PutMapping(value = "/updateAdmin")
-	public Admin updateAdmin(@Valid @RequestBody Admin admin, @RequestParam(required = false) String key) {
+	@PutMapping(value = "/")
+	public Admin updateAdminHandler(@Valid @RequestBody Admin admin, @RequestParam(required = false) String key) {
 		return aService.updateAdmin(admin, key);
 	}
 
 	
 	
 	// To delete existing user details by passing its login key
-	@DeleteMapping(value = "/deleteAdmin")
-	public Admin deleteAdmin(@RequestParam(required = false) String key) {
+	@DeleteMapping(value = "/")
+	public Admin deleteAdminHandler(@RequestParam(required = false) String key) {
 		return aService.deleteAdmin(key);
 	}
 
 	
 	
 	// To get details of current user by passing its login key
-	@GetMapping(value = "/getAdmin")
-	public Admin getAdminDetails(@RequestParam(required = false) String key) {
+	@GetMapping(value = "/")
+	public Admin getAdminDetailsHandler(@RequestParam(required = false) String key) {
 		return aService.getAdminDetails(key);
 	}
 	
@@ -93,32 +78,32 @@ public class AdminController {
 	private ProductService pService;
 	
 	
-	@PostMapping("/addProduct")
-	public Product addProduct(@Valid @RequestBody Product product,@RequestParam String key)
+	@PostMapping("/product")
+	public Product addProductHandler(@Valid @RequestBody Product product,@RequestParam String key)
 	{
 		return pService.addProduct(product,key);
 	}
 	
-	@GetMapping("/getAllProducts")
-	public List<Product> getAllProducts(@RequestParam String key)
-	{
-		return pService.getProductList(key);
-	}
+//	@GetMapping("/getAllProducts")
+//	public List<Product> getAllProducts(@RequestParam String key)
+//	{
+//		return pService.getProductList(key);
+//	}
+//	
+//	@GetMapping("/getProduct/{name}")
+//	public Product getProductByName(@PathVariable String name,@RequestParam String key)
+//	{
+//		return pService.getProductByName(name,key);
+//	}
 	
-	@GetMapping("/getProduct/{name}")
-	public Product getProductByName(@PathVariable String name,@RequestParam String key)
-	{
-		return pService.getProductByName(name,key);
-	}
-	
-	@PutMapping("/updateProduct")
-	public Product updateProduct(@Valid @RequestBody Product product,@RequestParam String key)
+	@PutMapping("/product")
+	public Product updateProductHandler(@Valid @RequestBody Product product,@RequestParam String key)
 	{
 		return pService.updateProduct(product,key);
 	}
 	
-	@DeleteMapping("/deleteProduct/{name}")
-	public Product deleteProductByName(@PathVariable String name,@RequestParam String key)
+	@DeleteMapping("/product/{name}")
+	public Product deleteProductByNameHandler(@PathVariable String name,@RequestParam String key)
 	{
 		return pService.deleteProductByName(name,key);
 	}
@@ -134,14 +119,14 @@ public class AdminController {
 //	|                            Customers Control By Admin                                    |
 //	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
-	@GetMapping("/getCustomers")
-	public List<Customer> getCustomers(@RequestParam String key)
+	@GetMapping("/customers")
+	public List<Customer> getAllCustomersDetailsHandler(@RequestParam String key)
 	{
 		return aService.getCustomers(key);
 	}
 	
-	@GetMapping("/getCustomer/{mobile}")
-	public Customer getCustomer(@PathVariable String mobile,@RequestParam String key)
+	@GetMapping("/customer/{mobile}")
+	public Customer getCustomerDetailsHandler(@PathVariable String mobile,@RequestParam String key)
 	{
 		return aService.getCustomerByMobile(mobile, key);
 	}

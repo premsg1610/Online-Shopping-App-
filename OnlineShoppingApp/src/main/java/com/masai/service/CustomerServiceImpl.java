@@ -38,42 +38,8 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	private GetCurrentLoginUserSessionDetailsImpl getCurrentLoginUser;
-	
-
-	
-	
-	
-	@Override
-	public Product getProductDetailsByName(String productName) {
-		
-			 Product product =  prodDao.findByProductName(productName);
-			 if(product == null)
-			 {
-				 throw new ProductException("Product not found with this name "+ productName);
-			 }
-			 return product ;
-			 
-	}
-		 
 
 
-
-
-	@Override
-	public List<Product> getAllProductDetails() {
-		
-			List<Product> productList = prodDao.findAll();
-
-			if (productList.isEmpty()) {
-				throw new ProductException("No product exist in this shopping site.");
-			}
-			return productList;
-		} 
-	
-
-
-	
-	
 	
 	@Override
 	public String addProductToCart(String productName, Integer quantity, String key) {
@@ -223,7 +189,7 @@ public class CustomerServiceImpl implements CustomerService{
 						return "Product " +  productName + " removed from cart successfully.";
 					}
 				}
-				throw new LoginException("Cart is empty. Add item to cart...");
+				throw new LoginException("Cart doesn't have product " + productName + ". Add item to cart...");
 			}
 			
 			throw new LoginException("Customer not logged in.");
@@ -297,7 +263,7 @@ public class CustomerServiceImpl implements CustomerService{
 				return order.getOrderStatus();
 	
 			}
-			throw new ProductException("No product in cart. Add product to cart first...");
+			throw new ProductException("No product in cart . Add product to cart first...");
 		}
 		
 		throw new LoginException("Customer not logged in");
@@ -311,7 +277,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	
 	@Override
-	public Customer createCustomer(Customer customer) {
+	public Customer registerCustomer(Customer customer) {
 		
 	 Customer opt =	 cusDao.findByMobile(customer.getMobile());
 	 
@@ -333,21 +299,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new LoginException("No user found.. try login first");
 		}
 		
-		if(!customer2.getEmail().equals(customer.getEmail())) {
-			customer2.setEmail(customer.getEmail());
-		}
-		else if(!customer2.getMobile().equals(customer.getMobile())) {
-			customer2.setMobile(customer.getMobile());
-		}
-		else if(!customer2.getFirstName().equals(customer.getFirstName())) {
-			customer2.setFirstName(customer.getFirstName());
-		}
-		else if(!customer2.getPassword().equals(customer.getPassword())) {
-			customer2.setPassword(customer.getPassword());
-		}
-		
-		
-		return cusDao.save(customer2);
+		return cusDao.save(customer);
 	}
 
 

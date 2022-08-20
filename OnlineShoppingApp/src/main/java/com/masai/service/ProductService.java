@@ -10,14 +10,17 @@ public interface ProductService {
 
 	public Product updateProduct(Product product,String key);
 
-	public List<Product> getProductList(String key);
-
-	public Product getProductByName(String name,String key);
+//	public List<Product> getProductList(String key);
+//
+//	public Product getProductByName(String name,String key);
 
 	public Product deleteProductByName(String name,String key);
 	
-//	prem
-//	public Product deleteProduct(Integer productId);
+	public Product getProductDetailsByName(String productName);
+		
+	public List<Product> getAllProductDetails();
+
+	
 
 
 

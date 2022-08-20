@@ -7,9 +7,9 @@ import com.masai.model.Customer;
 
 public interface AdminService {
 	
-        public Admin createAdmin(Admin admin);
+    public Admin registerAdmin(Admin admin);
 	
-        public Admin updateAdmin(Admin admin, String key);
+    public Admin updateAdmin(Admin admin, String key);
 	
 	public Admin deleteAdmin(String key);
 	
@@ -18,5 +18,6 @@ public interface AdminService {
 	public List<Customer> getCustomers(String key);
 	
 	public Customer getCustomerByMobile(String mobile, String key);
+	
 
 }
